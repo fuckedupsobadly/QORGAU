@@ -140,6 +140,17 @@ def main() -> None:
     args = parser.parse_args()
 
     adapter_dir = Path(args.adapter)
+    try:
+        validate_adapter(adapter_dir)
+    except FileNotFoundError as exc:
+        # A missing adapter is the normal state before training, not a crash.
+        raise SystemExit(
+            f"{exc}\n\ntrain one first:\n"
+            "  pip install -r requirements-ml.txt\n"
+            "  python -m training.prepare_dataset\n"
+            "  python -m training.train"
+        ) from None
+
     if args.mode == "card":
         print(f"model card written to {write_model_card(adapter_dir, Path(args.out) if args.out else None)}")
         return

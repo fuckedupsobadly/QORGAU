@@ -26,7 +26,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from config.ontology import HARMFUL_ACTION_EVENTS, PRESSURE_EVENTS  # noqa: E402
+from config.ontology import HARMFUL_ACTION_EVENTS  # noqa: E402
 from config.settings import settings  # noqa: E402
 from models.inference import available_backends, get_backend  # noqa: E402
 from realtime.session import LiveCallSession, growing_transcripts  # noqa: E402

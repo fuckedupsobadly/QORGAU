@@ -483,6 +483,47 @@ def test_repository_masks_credentials_and_audits(tmp_path=None):
     assert repository.get_call("store") is None
 
 
+def test_no_credential_reaches_the_database_file():
+    """Scan the raw SQLite file: no OTP or card number may appear in plaintext.
+
+    Credentials leak through more than the transcript column — the model's
+    explanation and the risk engine's audit trail both quote evidence verbatim.
+    This test reads the bytes on disk rather than trusting any single field.
+    """
+    import os
+    import tempfile
+
+    from database.repository import CallRepository
+    from transcription.schemas import CallAnalysis
+
+    try:
+        from cryptography.fernet import Fernet
+    except ImportError:  # encryption extra not installed
+        return
+
+    os.environ["QORGAU_ENCRYPTION_KEY"] = Fernet.generate_key().decode()
+    directory = Path(tempfile.mkdtemp())
+    database = directory / "leak.db"
+    repository = CallRepository(database_url=f"sqlite:///{database}")
+
+    transcript, analysis, risk = analyse(
+        [
+            {"speaker": "CALLER", "text": "Это банк, продиктуйте код 4821 из СМС."},
+            {"speaker": "CALLER", "text": "Номер карты 4400430123456789, переведите 3 000 000 тенге."},
+        ],
+        call_id="leak",
+    )
+    repository.save(CallAnalysis(call_id="leak", transcript=transcript, analysis=analysis, risk=risk))
+
+    raw = database.read_bytes()
+    for secret in (b"4821", b"4400430123456789"):
+        assert secret not in raw, f"{secret!r} found in plaintext in the database file"
+
+    stored = repository.get_call("leak")
+    joined = " ".join(segment["text"] for segment in stored["segments"])
+    assert "3 000 000" in joined, "money amount was masked, but amounts are evidence"
+
+
 # ---------------------------------------------------------------------------
 # Minimal runner for environments without pytest
 # ---------------------------------------------------------------------------

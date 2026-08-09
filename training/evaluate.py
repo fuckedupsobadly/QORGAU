@@ -19,7 +19,7 @@ import time
 from collections import defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Iterable, Sequence
+from typing import Sequence
 
 from config.settings import ALERT_WARNING_THRESHOLD, settings
 from models.inference import get_backend

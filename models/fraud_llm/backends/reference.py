@@ -49,7 +49,7 @@ from config.ontology import (
     Stage,
     Tactic,
 )
-from models.fraud_llm.lexicon import Clause, Concept, SpeechAct, analyse_clauses, canon
+from models.fraud_llm.lexicon import Clause, Concept, SpeechAct, analyse_clauses
 from models.fraud_llm.backends.base import FraudLLMBackend
 from transcription.schemas import LLMAnalysis, RiskFactor, Transcript, TranscriptSegment
 

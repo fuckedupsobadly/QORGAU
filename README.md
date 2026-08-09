@@ -1,901 +1,381 @@
 # QORGAU
 
-### AI-powered detection of telephone scams in Kazakh and Russian
+### AI fraud intelligence for telephone calls in Kazakh, Russian and mixed speech
 
-QORGAU is an AI-powered fraud detection system designed to analyze telephone conversations in **Kazakh, Russian, and mixed Kazakh-Russian speech** and identify social-engineering and financial scam patterns in real time.
+> **қорғау** — *to protect*
 
-Instead of relying on keywords such as `"банк"`, `"код"` or `"деньги"`, QORGAU analyzes the **context, intent, conversational sequence, manipulation tactics, and actions requested from the victim**.
+QORGAU listens to a phone call and works out whether someone is being scammed —
+while the call is still happening.
 
-> From keyword detection to behavioral fraud intelligence.
+It is built on one idea: **a scam is a behavioural sequence, not a set of
+keywords.**
+
+```
+IDENTITY CLAIM  →  PROBLEM CLAIM  →  EMOTIONAL MANIPULATION
+                →  PROPOSED SOLUTION  →  REQUESTED ACTION
+                →  FINANCIAL / CREDENTIAL CONSEQUENCE
+```
+
+`банк`, `код`, `деньги`, `полиция` appear in almost every *legitimate* bank call
+too. What separates an attack from customer service is **who** said something,
+**why**, and **what they are trying to make the other person do**:
+
+| utterance | speaker | verdict |
+|---|---|---|
+| `Никому не сообщайте код из СМС` | bank employee | protective advice — **risk 0** |
+| `Продиктуйте мне код из СМС` | unknown caller, after inventing a loan | OTP theft — **risk 80, CRITICAL** |
+
+Nearly the same words. Opposite meaning. Telling those two apart is the whole
+job, and it is what QORGAU is designed and measured around.
 
 ---
 
-## Problem
+## Run it
 
-Modern telephone scams are becoming increasingly sophisticated.
-
-A scammer may impersonate:
-
-* a bank employee
-* a police officer
-* a government official
-* a delivery service
-* an investment company
-* technical support
-
-The attack usually happens as a sequence:
-
-```text
-Impersonation
-      ↓
-False Problem
-      ↓
-Fear / Authority
-      ↓
-Urgency
-      ↓
-Trust Manipulation
-      ↓
-OTP / Credential Request
-      ↓
-Money Transfer
+```bash
+pip install -r requirements.txt
+python -m training.prepare_dataset            # build the annotated corpus
+python -m training.evaluate --split test      # held-out metrics
+streamlit run app/frontend/streamlit_app.py   # dashboard on :8501
 ```
 
-Traditional keyword-based systems struggle with these attacks because individual phrases are not necessarily suspicious.
+Or `./run.sh`, which does all four. **No GPU, no API key and no ML dependency is
+required** for any of that.
 
-For example:
+The dashboard has three modes:
 
-> "Никому не сообщайте код из SMS."
+| mode | what it does |
+|---|---|
+| **Analyse a call** | A corpus call, an uploaded recording, or a pasted transcript. Verdict, evidence timeline, and the full risk breakdown. Clicking a timeline event jumps to that moment in the transcript. |
+| **Live call (real-time)** | Replays a call turn by turn so you can watch the risk score, conversation stage and alerts move as the attack develops. |
+| **Model evaluation** | The held-out numbers, per language and per difficulty slice. |
 
-and
-
-> "Продиктуйте мне код из SMS."
-
-contain almost the same keywords but have completely different intent.
-
-QORGAU focuses on **who said something, why they said it, and what they are trying to make the victim do.**
+REST + WebSocket API: `uvicorn app.api.main:app --reload`.
 
 ---
 
-# Goals
+## Results
 
-QORGAU is designed to:
+Held-out **test** split — 72 conversations, 48 scam / 24 legitimate. Full detail
+and reproduction steps in [`METRICS.md`](METRICS.md).
 
-* Detect telephone scams in real time
-* Understand Kazakh and Russian speech
-* Handle natural Kazakh-Russian code-switching
-* Identify social-engineering tactics
-* Detect suspicious victim requests
-* Extract evidence from conversations
-* Provide an explainable risk score
-* Identify the stage of an ongoing scam
-* Minimize false positives on legitimate conversations
+| metric | value |
+|---|---|
+| **scam recall** | **1.000** |
+| **false-positive rate** | **0.000** |
+| exact classification accuracy | 0.944 |
+| tactic micro F1 | 0.741 |
+| evidence grounding rate | 1.000 |
+| JSON validity | 1.000 |
+| latency per call | ~4 ms |
 
----
+Per slice: Kazakh 1.000 recall · Russian 1.000 · code-switched 1.000 ·
+ASR-noisy 1.000 · unseen scam patterns 1.000 — with **0.000 false positives on
+every legitimate slice**. No legitimate call reaches even SUSPICIOUS, and no scam
+call falls below HIGH RISK.
 
-# Architecture
+Across all three splits (288 conversations): recall 0.979 / 0.958 / 1.000, false
+positives 0.000 everywhere.
 
-```text
-                         PHONE CALL
-                              │
-                              ▼
-                    ┌───────────────────┐
-                    │  Audio Ingestion  │
-                    │   WebRTC / SIP    │
-                    └─────────┬─────────┘
-                              │
-                              ▼
-                    ┌───────────────────┐
-                    │       VAD         │
-                    │ Voice Activity    │
-                    │ Detection         │
-                    └─────────┬─────────┘
-                              │
-                              ▼
-                    ┌───────────────────┐
-                    │    Diarization    │
-                    │                   │
-                    │ CALLER / VICTIM   │
-                    └─────────┬─────────┘
-                              │
-                              ▼
-                    ┌───────────────────┐
-                    │   Speech-to-Text  │
-                    │                   │
-                    │ KZ / RU / Mixed   │
-                    └─────────┬─────────┘
-                              │
-                              ▼
-              ┌──────────────────────────────┐
-              │      Structured Transcript  │
-              │                              │
-              │ speaker                      │
-              │ timestamp                    │
-              │ language                     │
-              │ text                         │
-              │ ASR confidence               │
-              └──────────────┬───────────────┘
-                             │
-                             ▼
-              ┌──────────────────────────────┐
-              │   Fine-Tuned Fraud LLM       │
-              │                              │
-              │ Classification               │
-              │ Intent Detection              │
-              │ Tactic Detection              │
-              │ Event Extraction              │
-              │ Evidence Extraction           │
-              │ Conversation Stage            │
-              └──────────────┬───────────────┘
-                             │
-                             ▼
-                    ┌───────────────────┐
-                    │    Risk Engine    │
-                    │                   │
-                    │ LLM signals       │
-                    │ + deterministic   │
-                    │   rules           │
-                    └─────────┬─────────┘
-                              │
-                    ┌─────────┴──────────┐
-                    ▼                    ▼
-             REAL-TIME ALERT          REPORT
-```
+### What these numbers are, and are not
 
-## Core principle
+Three caveats, because they decide what this is ready for:
 
-The **LLM understands the conversation**.
-
-The **risk engine calculates the final risk**.
-
-This separation makes the system more explainable, deterministic, and easier to evaluate.
+1. **The corpus is synthetic.** It is generated from 24 hand-annotated script
+   families (14 scam / 10 legitimate) rendered into Russian, Kazakh and
+   code-switched variants with realistic ASR noise. Splits are **by family**, so
+   no test conversation is a paraphrase of a training one, and two scam families
+   plus one legitimate family are withheld entirely as an `unseen_pattern` slice.
+   That is a real generalisation test — but it is still a narrower distribution
+   than production audio. Expect these numbers to drop on real calls.
+2. **These are the `reference` backend's numbers, not a trained adapter's.**
+   Fine-tuning needs a GPU. The reference backend is a transparent implementation
+   of the same sequence model, and it exists so the whole system runs and is
+   measurable without weights — and so the fine-tuned model has a real baseline
+   to beat rather than a strawman.
+3. **The score is a system risk estimate, not a calibrated probability.** There
+   is no `97.384829%` anywhere in this codebase, deliberately.
 
 ---
 
-# AI Pipeline
+## How it works
 
-## 1. Audio Ingestion
+Every stage sits behind an interface, so any one can be replaced without touching
+the others.
 
-QORGAU accepts a live audio stream or recorded call.
-
-Planned interfaces:
-
-```text
-WebRTC
-SIP
-WAV
-MP3
-M4A
-OGG
+```
+                    TELEPHONE CALL
+                          │
+  audio/ingestion.py      │  WebRTC / SIP frames · uploaded file · fixture
+                          ▼
+  audio/vad.py            │  energy VAD (no deps) │ Silero
+                          ▼
+  audio/diarization.py    │  CALLER / VICTIM / UNKNOWN     ← load-bearing
+                          ▼
+  audio/asr.py            │  faster-whisper │ whisper │ fixture
+                          ▼
+  transcription/          │  two transcripts: verbatim (evidence)
+    normalizer.py         │  + normalized (model input)
+                          ▼
+  models/fraud_llm/       ★  FINE-TUNED FRAUD LLM
+                          │  → scam types · tactics · stage · requested actions
+                          │  → risk events, each carrying transcript evidence
+                          ▼
+  risk/engine.py          ★  DETERMINISTIC RISK ENGINE
+                          │  → 0-100 score + full audit trail
+                          │
+          ┌───────────────┴───────────────┐
+          ▼                               ▼
+  realtime/alerts.py                risk/engine.py::render_report
+  live victim warning               final investigation report
 ```
 
----
+**The LLM understands the conversation. The risk engine decides the number.**
+The model never computes a score; the engine never calls a model. That split is
+what makes the output both context-aware *and* auditable — every point in a score
+traces back to a named rule in [`risk/rules.py`](risk/rules.py).
 
-## 2. Voice Activity Detection
+### Four properties that carry the design
 
-VAD identifies periods of speech and removes unnecessary silence.
+**Speaker attribution is not optional.** `Не говорите никому свой SMS-код` and
+`Назовите мне ваш SMS-код` share most of their vocabulary and mean opposite
+things. Without a speaker label, the analysis layer cannot tell a warning from an
+attack — so the risk engine **refuses to score a harmful request attributed to
+anyone but the caller**, and records why it declined.
 
-```text
-Audio
-  ↓
-VAD
-  ↓
-Speech segments
+**Evidence cannot be invented.** Every finding must quote the transcript.
+`FraudLLMBackend.ground()` locates each quote in the actual segments; anything it
+cannot find is removed from the analysis, recorded in `dropped_findings`, and
+contributes nothing. A hallucinated `SCAM` verdict with no grounded evidence
+scores **0**.
+
+**Normalization can never delete evidence.** Each cleanup rule is applied
+speculatively and reverted if it would drop a protected token — a digit, an
+amount, an OTP reference, an organisation, a code-switch. The verbatim ASR text is
+kept untouched alongside the cleaned version.
+
+**Code-switching is normal, never a signal.** `Сіздің картаңыз заблокирована` is
+ordinary Kazakhstani speech. Language mixing is detected only so the UI and the
+evaluator can slice by it, and there is a test asserting it does not move the
+score.
+
+### The risk engine
+
+Weights are policy, set in one auditable file. The combination rule is the
+interesting part:
+
+```
+score = 100 × (1 − Π(1 − cᵢ/100))     over capped group contributions
 ```
 
-This reduces unnecessary ASR computation and helps with real-time processing.
+* **Group caps** — ten urgency mentions are not ten times one urgency mention.
+* **Interaction effects** — `IMPERSONATION + OTP_REQUEST` scores higher than
+  either alone, because the authority claim is what makes the request credible.
+* **Mitigations** — protective advice, or a call the customer placed themselves,
+  subtract.
+* **Policy floors** — a CRITICAL credential/money/device request inside an
+  impersonation frame is CRITICAL *regardless* of how the arithmetic lands.
+* **Bands** — 0-29 SAFE · 30-59 SUSPICIOUS · 60-79 HIGH RISK · 80-100 CRITICAL.
 
----
+When the model and the engine disagree, QORGAU **says so** (`disagreement`)
+instead of silently picking one.
 
-## 3. Speaker Diarization
+### Real-time mode
 
-The system identifies who is speaking:
+Analysis re-runs on every transcript chunk over a window of previous turns —
+never on the newest sentence alone.
 
-```text
-CALLER
-VICTIM
-UNKNOWN
+* **Peak-hold.** A caller who demands an OTP at 00:42 and then chats pleasantly is
+  still dangerous at 01:30.
+* **Immediate escalation.** A critical event alerts *at once*, without waiting for
+  the total to cross 80. Waiting while the victim reads a code aloud defeats the
+  point.
+
+Observed live progression on a bank-impersonation call:
+
 ```
-
-Example:
-
-```text
-[00:03] CALLER:
-Сәлеметсіз бе, это служба безопасности банка.
-
-[00:08] VICTIM:
-Иә, тыңдап тұрмын.
-
-[00:12] CALLER:
-На ваше имя оформляется кредит.
+turn 1-3   risk   0  SAFE        greeting, identity claim, invented loan
+turn 4     risk  35  SUSPICIOUS  urgency + threat         → MONITOR
+turn 5     risk  80  CRITICAL    "Кодты айтып жіберіңіз"  → CRITICAL alert
 ```
-
-Speaker attribution is essential for intent detection.
-
-For example:
-
-```text
-VICTIM:
-Не сообщайте никому код из SMS.
-```
-
-is very different from:
-
-```text
-CALLER:
-Сообщите мне код из SMS.
-```
-
----
-
-# Multilingual Speech Recognition
-
-QORGAU is designed around:
-
-* Kazakh
-* Russian
-* Mixed Kazakh-Russian speech
-
-Real conversations frequently contain code-switching:
-
-```text
-"Сіздің картаңыз заблокирована."
-
-"Қазір вам SMS келеді."
-
-"Кодты айтып жіберіңіз, я сейчас проверю."
-
-"Ақшаңызды безопасный счетқа аудару керек."
-```
-
-The system must treat this as normal language behavior rather than a fraud signal.
-
----
-
-# Fine-Tuned Fraud LLM
-
-The core intelligence layer is a **fine-tuned multilingual language model**.
-
-The model is trained on conversational fraud examples rather than isolated keywords.
-
-### Model responsibilities
-
-The LLM extracts:
-
-* Scam classification
-* Scam type
-* Manipulation tactics
-* Conversation stage
-* Requested victim actions
-* Suspicious events
-* Evidence
-* Explanation
-
----
-
-# Fraud Ontology
-
-## Scam Types
-
-```text
-BANK_IMPERSONATION
-POLICE_IMPERSONATION
-GOVERNMENT_IMPERSONATION
-INVESTIGATOR_IMPERSONATION
-
-ACCOUNT_COMPROMISE
-FAKE_LOAN
-FAKE_TRANSACTION
-FAKE_REFUND
-
-OTP_THEFT
-CARD_DATA_THEFT
-CREDENTIAL_THEFT
-
-SAFE_ACCOUNT_SCAM
-MONEY_TRANSFER_SCAM
-
-REMOTE_ACCESS_SCAM
-
-INVESTMENT_SCAM
-CRYPTO_SCAM
-
-MARKETPLACE_SCAM
-DELIVERY_SCAM
-
-ROMANCE_SCAM
-JOB_SCAM
-
-OTHER_SOCIAL_ENGINEERING
-```
-
-## Manipulation Tactics
-
-```text
-IMPERSONATION
-URGENCY
-FEAR
-AUTHORITY
-SECRECY
-ISOLATION
-FALSE_PROBLEM
-FALSE_SOLUTION
-
-OTP_REQUEST
-CARD_REQUEST
-PASSWORD_REQUEST
-
-MONEY_TRANSFER_REQUEST
-REMOTE_ACCESS_REQUEST
-INSTALLATION_REQUEST
-SCREEN_SHARING
-
-CRYPTO_TRANSFER
-```
-
----
-
-# Conversation Stages
-
-QORGAU models the progression of an attack:
-
-```text
-INTRODUCTION
-      ↓
-IDENTITY_CLAIM
-      ↓
-PROBLEM_CREATION
-      ↓
-FEAR_ESCALATION
-      ↓
-TRUST_BUILDING
-      ↓
-INFORMATION_EXTRACTION
-      ↓
-CREDENTIAL_EXTRACTION
-      ↓
-MONEY_TRANSFER
-      ↓
-REMOTE_ACCESS
-      ↓
-EXIT
-```
-
-This enables the system to detect an attack **before the final financial loss occurs**.
-
----
-
-# Risk Events
-
-The model extracts individual suspicious events.
-
-Example:
 
 ```json
-{
-  "timestamp": "00:42",
-  "speaker": "CALLER",
-  "category": "OTP_REQUEST",
-  "severity": "CRITICAL",
-  "evidence": "Продиктуйте код из SMS",
-  "reason": "Caller requests a one-time authentication code."
-}
-```
-
-Possible categories:
-
-```text
-IMPERSONATION
-THREAT
-URGENCY
-FEAR
-SECRECY
-OTP_REQUEST
-CARD_REQUEST
-PASSWORD_REQUEST
-MONEY_TRANSFER
-SAFE_ACCOUNT
-REMOTE_ACCESS
-SCREEN_SHARING
-APP_INSTALLATION
-CRYPTO_TRANSFER
-```
-
-Every event must contain evidence.
-
-The model must never fabricate evidence.
-
----
-
-# Training Strategy
-
-The model should be fine-tuned using conversational examples.
-
-Each example contains:
-
-```text
-Conversation
-      ↓
-Classification
-      ↓
-Scam Type
-      ↓
-Tactics
-      ↓
-Conversation Stage
-      ↓
-Victim Action
-      ↓
-Evidence
-```
-
-Example:
-
-```json
-{
-  "conversation": [
-    {
-      "speaker": "CALLER",
-      "text": "Сәлеметсіз бе, это служба безопасности банка."
-    },
-    {
-      "speaker": "VICTIM",
-      "text": "Иә."
-    },
-    {
-      "speaker": "CALLER",
-      "text": "На ваше имя оформляется кредит."
-    },
-    {
-      "speaker": "VICTIM",
-      "text": "Я ничего не оформлял."
-    },
-    {
-      "speaker": "CALLER",
-      "text": "Сейчас вам придет SMS. Продиктуйте код."
-    }
-  ],
-
-  "label": {
-    "classification": "SCAM",
-    "scam_types": [
-      "BANK_IMPERSONATION",
-      "OTP_THEFT"
-    ],
-    "tactics": [
-      "IMPERSONATION",
-      "FEAR",
-      "URGENCY",
-      "OTP_REQUEST"
-    ]
-  }
-}
+{"type": "risk_update", "risk_score": 82, "classification": "CRITICAL",
+ "current_stage": "CREDENTIAL_EXTRACTION",
+ "event": {"category": "OTP_REQUEST", "severity": "CRITICAL"}}
 ```
 
 ---
 
-# Hard Negatives
+## Fine-tuning the model
 
-Reducing false positives is a major part of the training strategy.
-
-The dataset must contain legitimate conversations such as:
-
-```text
-Customer calling a bank about a loan
-
-Customer asking about a failed transaction
-
-Bank employee explaining OTP security
-
-Customer reporting suspicious activity
-
-Police explaining how to report fraud
-
-Customer asking how to freeze a card
+```bash
+pip install -r requirements-ml.txt
+python -m training.prepare_dataset
+python -m training.train --base-model Qwen/Qwen2.5-7B-Instruct
+python -m training.evaluate --split test --backend local_adapter
+python -m training.export --mode card
+QORGAU_LLM_BACKEND=local_adapter streamlit run app/frontend/streamlit_app.py
 ```
 
-For example:
+QLoRA — 4-bit base, rank-32 adapters on all attention and MLP projections —
+because the task is teaching a *behaviour* (read a call, emit this JSON) rather
+than new language competence. That fits one consumer GPU and keeps the base model
+swappable per deployment.
 
-> "Никому не сообщайте код из SMS."
+Two details that matter here:
 
-must **not** be classified as OTP theft.
+* **Loss is computed on the JSON answer only.** The system prompt is ~2 kB of
+  fixed instructions and the user turn is the transcript; training the model to
+  predict those wastes capacity and biases it toward reciting the prompt.
+* **No sequence packing.** A transcript boundary is semantically load-bearing, so
+  conversations are never allowed to bleed into each other.
 
-The model must understand **who requested the information and why**.
+Training reports **JSON validity and classification agreement** from greedy
+generation on validation calls, not just loss — the deliverable is parseable,
+correct JSON.
+
+### The corpus
+
+[`training/corpus.py`](training/corpus.py) holds the annotated script families.
+Annotation lives on the *script*, and rendering produces the surface forms — so a
+family yields Russian, Kazakh and code-switched conversations, each optionally
+degraded with dropped vowels, stutters, fillers and lost punctuation. Gold
+evidence is taken from the **rendered** text, so it is always verbatim.
+
+Hard negatives are ~40% of families by design: a customer asking to freeze a
+card, a bank explaining that it never asks for codes, a police officer explaining
+how to report a scam, a real courier confirming an address, a bank verifying a
+genuine transaction *and refusing to take an OTP*. Without those, a model learns
+`bank + money + OTP = scam`, which is useless in production.
+
+To add real annotated calls, drop JSON files into `datasets/raw/` with `segments`
+and a `gold` object; `prepare_dataset.py` mixes them in.
 
 ---
 
-# Kazakhstan-First Threat Intelligence
+## Privacy and security
 
-QORGAU is optimized for local fraud scenarios involving:
+Call transcripts are sensitive financial data and the code treats them that way.
 
-* Banks
-* eGov
-* Government services
-* Police
-* Delivery companies
-* Marketplaces
-* Investment platforms
-* Cryptocurrency
-* Fake loans
-* Fake transactions
-* "Safe account" scams
+* **Masking before storage** — OTPs, PINs, CVVs and card numbers are replaced
+  everywhere they can appear: the transcript column, event evidence, the model's
+  explanation, and the risk engine's audit trail. There is a test that scans the
+  raw database file for plaintext credentials.
+* **Money amounts are *not* masked.** They are evidence, not secrets.
+* **Encryption at rest** — verbatim text is Fernet-encrypted under
+  `QORGAU_ENCRYPTION_KEY`. **With no key configured, QORGAU declines to store the
+  verbatim text at all** rather than silently writing plaintext or pretending to
+  encrypt it.
+* **No public recording URLs** — recordings are internal references only; there is
+  no column that could leak one.
+* **Audit log** — every save, read, decrypt, delete and purge is recorded, with
+  decryption flagged as its own action.
+* **Retention and deletion** — per-call deadlines enforced by `purge_expired()`;
+  `DELETE /api/calls/{id}` erases a call.
 
-The system should understand local context without assuming that mentioning a specific organization means fraud.
+```bash
+export QORGAU_ENCRYPTION_KEY=$(python -c \
+  'from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())')
+```
 
 ---
 
-# Real-Time Mode
+## API
 
-QORGAU is designed to support streaming analysis.
-
-```text
-Audio
- ↓
-5–10 second chunk
- ↓
-ASR
- ↓
-Conversation State
- ↓
-Fine-Tuned LLM
- ↓
-Risk Engine
- ↓
-Risk Update
- ↓
-Alert
 ```
-
-The model should maintain context across multiple chunks instead of classifying each sentence independently.
-
-Example:
-
-```text
-00:05 → Identity claim
-00:18 → False problem
-00:32 → Fear
-00:47 → OTP request
-00:55 → Money transfer
+POST   /api/calls                 register a transcribed call
+POST   /api/calls/upload          upload a recording (VAD → diarization → ASR)
+POST   /api/calls/{id}/analyze    analyse a completed call
+GET    /api/calls/{id}            transcript + analysis
+GET    /api/calls/{id}/events     suspicious events
+GET    /api/calls/{id}/report     investigation report (markdown)
+DELETE /api/calls/{id}            erase a call
+WS     /api/calls/{id}/stream     live risk_update frames
+POST   /api/admin/purge-expired   run the retention policy
 ```
-
-The risk score evolves as the attack develops.
 
 ---
 
-# Explainable Detection
+## Tests
 
-QORGAU does not simply output:
-
-```text
-SCAM
+```bash
+pytest tests/            # or: python tests/test_qorgau.py
 ```
 
-It provides evidence.
+29 behavioural tests, all passing. They assert the properties that make the
+system trustworthy rather than implementation details:
 
-Example:
-
-```json
-{
-  "classification": "SCAM",
-  "risk_score": 94,
-  "scam_types": [
-    "BANK_IMPERSONATION",
-    "OTP_THEFT",
-    "SAFE_ACCOUNT_SCAM"
-  ],
-  "risk_factors": [
-    {
-      "timestamp": "00:12",
-      "category": "IMPERSONATION",
-      "severity": "HIGH",
-      "evidence": "Это служба безопасности банка."
-    },
-    {
-      "timestamp": "00:42",
-      "category": "OTP_REQUEST",
-      "severity": "CRITICAL",
-      "evidence": "Продиктуйте код из SMS."
-    },
-    {
-      "timestamp": "01:04",
-      "category": "MONEY_TRANSFER",
-      "severity": "CRITICAL",
-      "evidence": "Переведите деньги на безопасный счет."
-    }
-  ]
-}
-```
-
-This allows the user or investigator to understand **why the system generated the alert**.
+* every legitimate family stays below the alarm threshold, every scam family
+  reaches it
+* a bank's warning about an OTP is not scored as a request for one
+* victim speech never adds risk
+* normalization never removes protected material
+* ungrounded findings are discarded and score nothing
+* the score is deterministic and bounded; repeated pressure is capped
+* real-time risk is peak-hold and alerts immediately on critical events
+* train and test share no script family; gold evidence is verbatim
+* no credential reaches the database file in plaintext
 
 ---
 
-# Risk Engine
+## Layout
 
-The LLM does not directly determine the final production risk score.
-
-Instead, detected events are passed to a deterministic risk engine.
-
-Initial signals may include:
-
-```text
-Bank impersonation       +20
-OTP request               +35
-Money transfer request   +35
-Remote access             +35
-Urgency                   +10
-Fear                      +10
-Secrecy                   +15
-Safe account              +40
 ```
-
-Signals can also interact.
-
-For example:
-
-```text
-BANK_IMPERSONATION
-+
-OTP_REQUEST
-+
-MONEY_TRANSFER_REQUEST
-```
-
-should result in a substantially higher risk than any individual signal.
-
-### Risk Levels
-
-|  Score | Level      |
-| -----: | ---------- |
-|   0–29 | SAFE       |
-|  30–59 | SUSPICIOUS |
-|  60–79 | HIGH RISK  |
-| 80–100 | CRITICAL   |
-
-The score is a **system risk estimate**, not a calibrated probability.
-
----
-
-# Evaluation
-
-QORGAU should not be evaluated using accuracy alone.
-
-Important metrics include:
-
-* Scam Recall
-* Precision
-* F1 Score
-* False Positive Rate
-* Scam Type F1
-* Tactic Detection F1
-* Evidence Extraction Accuracy
-* JSON Validity
-* Kazakh performance
-* Russian performance
-* Mixed-language performance
-* ASR-noise robustness
-* Unseen-scam generalization
-
-The test set should contain **previously unseen scam scripts** to measure whether the model actually generalizes.
-
----
-
-# Dataset Design
-
-The dataset should contain:
-
-```text
-SCAM
-├── Bank impersonation
-├── Police impersonation
-├── Fake loan
-├── Fake transaction
-├── OTP theft
-├── Safe account
-├── Remote access
-├── Investment
-├── Cryptocurrency
-├── Marketplace
-└── Delivery
-
-SAFE
-├── Legitimate bank support
-├── Loan inquiry
-├── Transaction support
-├── Card replacement
-├── Fraud reporting
-└── Security education
-```
-
-A significant portion of the dataset should contain naturally mixed Kazakh-Russian conversations.
-
-Training data should also include:
-
-* ASR errors
-* filler words
-* interruptions
-* incomplete sentences
-* colloquial speech
-* numbers
-* background noise
-* code-switching
-
----
-
-# Project Structure
-
-```text
 qorgau/
-│
-├── app/
-│   ├── api/
-│   ├── websocket/
-│   └── frontend/
-│
-├── audio/
-│   ├── ingestion.py
-│   ├── vad.py
-│   ├── diarization.py
-│   └── asr.py
-│
-├── transcription/
-│   ├── processor.py
-│   ├── normalizer.py
-│   └── schemas.py
-│
-├── models/
-│   ├── fraud_llm/
-│   ├── inference.py
-│   └── prompts.py
-│
-├── risk/
-│   ├── engine.py
-│   ├── rules.py
-│   └── calibration.py
-│
-├── datasets/
-│   ├── raw/
-│   ├── processed/
-│   ├── train/
-│   ├── validation/
-│   └── test/
-│
-├── training/
-│   ├── prepare_dataset.py
-│   ├── train.py
-│   ├── evaluate.py
-│   └── export.py
-│
-├── database/
-│   ├── models.py
-│   └── repository.py
-│
-├── tests/
-│
-├── config/
-│
-├── requirements.txt
-└── README.md
+├── app/            api/ · websocket/ · frontend/ (Streamlit)
+├── audio/          ingestion · vad · diarization · asr
+├── transcription/  schemas · normalizer · processor
+├── models/         prompts · inference · fraud_llm/{lexicon, backends}
+├── risk/           engine · rules · calibration
+├── realtime/       session · alerts
+├── database/       models · repository
+├── training/       corpus · prepare_dataset · train · evaluate · export
+├── datasets/       raw · processed · train · validation · test
+├── config/         settings · ontology
+└── tests/
 ```
 
----
+## Configuration
 
-# Tech Stack
-
-## AI / ML
-
-* Python
-* PyTorch
-* Hugging Face Transformers
-* PEFT
-* LoRA / QLoRA
-* Multilingual ASR
-* Fine-tuned LLM
-
-## Backend
-
-* FastAPI
-* WebSockets
-* PostgreSQL
-
-## Frontend
-
-* React
-* Next.js
-
-## Infrastructure
-
-* Docker
-* GPU inference
-* REST API
-* WebSocket streaming
+| variable | default | purpose |
+|---|---|---|
+| `QORGAU_LLM_BACKEND` | `reference` | `reference` · `local_adapter` · `anthropic` |
+| `QORGAU_BASE_MODEL` | `Qwen/Qwen2.5-7B-Instruct` | base model for fine-tuning |
+| `QORGAU_ADAPTER` | `artifacts/adapters/qorgau-lora` | trained adapter path |
+| `QORGAU_ASR` | `auto` | `faster_whisper` · `whisper` · `fixture` |
+| `QORGAU_VAD` | `energy` | `silero` |
+| `QORGAU_DIAR` | `heuristic` | `pyannote` |
+| `QORGAU_ENCRYPTION_KEY` | — | Fernet key for transcripts at rest |
+| `QORGAU_DATABASE_URL` | SQLite under `artifacts/storage` | any SQLAlchemy URL |
 
 ---
 
-# Privacy and Security
+## Known limitations
 
-Call recordings and transcripts may contain sensitive financial information.
+Stated plainly, because they determine what this is ready for:
 
-QORGAU follows a **Privacy-by-Design** approach.
+* **The corpus is synthetic.** Real calls are messier, longer, more interrupted,
+  and contain scripts nobody has written down yet.
+* **Kazakh ASR is the weakest link end-to-end**, ahead of the analysis layer.
+  Whisper's Kazakh is materially worse than its Russian, and it emits one language
+  tag per segment — wrong for code-switched speech, so QORGAU re-derives language
+  per utterance itself.
+* **The reference backend is lexicon-bound.** It generalises across inflection,
+  agglutination and noise, but a paraphrase built from vocabulary outside
+  `lexicon.py` will be missed. That is precisely the gap the fine-tuned model
+  closes, and why `unseen_pattern` is a reported slice.
+* **The heuristic diarizer struggles with cross-talk.** It reports per-turn
+  confidence so uncertain turns are visible; use `pyannote` in production.
+* **Risk weights are policy, not learned.** `risk/calibration.py` sweeps them
+  against labelled data, but a human sets them.
+* **Policy floors outrank ASR dampening.** A critical request on a very
+  low-confidence segment still alerts. That is a deliberate recall-first choice
+  for a fraud detector; the uncertainty is surfaced rather than hidden.
 
-Planned protections:
+## What the system will not do
 
-* Encryption in transit
-* Encryption at rest
-* Access control
-* Audit logging
-* Data retention policies
-* Secure deletion
-* PII masking
-* Protection of authentication credentials
-* No public access to raw recordings
-
-Sensitive information such as OTPs, PINs, CVVs, and passwords should not be retained unnecessarily.
-
----
-
-# Roadmap
-
-## Phase 1 — MVP
-
-* [ ] Audio upload
-* [ ] Speech-to-text
-* [ ] Kazakh/Russian transcription
-* [ ] Fine-tuned fraud LLM
-* [ ] Scam classification
-* [ ] Risk engine
-* [ ] Explainable alerts
-
-## Phase 2 — Real-Time
-
-* [ ] Streaming audio
-* [ ] Real-time ASR
-* [ ] Speaker diarization
-* [ ] Incremental LLM inference
-* [ ] Real-time risk updates
-* [ ] Live alerts
-
-## Phase 3 — Production
-
-* [ ] Large-scale fraud dataset
-* [ ] Model evaluation framework
-* [ ] Model monitoring
-* [ ] Continuous fine-tuning
-* [ ] Telecom integration
-* [ ] Banking API integration
-* [ ] Fraud intelligence dashboard
-
----
-
-# Vision
-
-QORGAU aims to become an **AI security layer for voice communication**.
-
-Instead of detecting fraud after money has been stolen, the goal is to detect the attack while the conversation is still happening.
-
-```text
-Attacker
-   ↓
-Phone Call
-   ↓
-┌──────────────────┐
-│      QORGAU      │
-│   AI Voice Shield│
-└────────┬─────────┘
-         ↓
-      Warning
-         ↓
-       Victim
-```
-
-## The mission
-
-> **Detect the manipulation before it becomes a financial loss.**
-
----
-
-# QORGAU
-
-**Real-time conversational fraud intelligence for Kazakhstan.**
-
-**Қорғау начинается с разговора.**
+It analyses and warns. It does not block accounts, move money, contact
+authorities, or make any financial decision — and it says `SUSPICIOUS` rather
+than `SCAM` when the evidence is thin, because a fraud detector that cries wolf
+gets switched off within a week.

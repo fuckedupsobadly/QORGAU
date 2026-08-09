@@ -18,7 +18,7 @@ from typing import Iterator, Sequence
 from audio.asr import ASRResult, SpeechRecognizer, build_asr
 from audio.diarization import Diarizer, DiarizedRegion, build_diarizer
 from audio.ingestion import AudioBuffer, AudioSource, FixtureSource, open_source
-from audio.vad import SpeechRegion, VoiceActivityDetector, build_vad
+from audio.vad import VoiceActivityDetector, build_vad
 from config.ontology import Language, Speaker
 from models.fraud_llm.lexicon import detect_language
 from transcription.normalizer import TranscriptNormalizer
@@ -79,6 +79,16 @@ class AudioProcessor:
             clip = buffer.slice_seconds(turn.start, turn.end)
             for result in self.asr.transcribe(clip, start_offset=turn.start):
                 segments.append(self._to_segment(len(segments), result, turn))
+
+        if regions and not segments and self.asr.name == "fixture":
+            # Speech was found but no engine could transcribe it. Say so — an
+            # empty transcript here otherwise reads as "this call was silent",
+            # which would be a dangerous thing to report about a scam call.
+            raise RuntimeError(
+                f"{len(regions)} speech region(s) were detected in {buffer.source!r} but no "
+                "speech-recognition engine is installed, so the call cannot be transcribed. "
+                "Install faster-whisper (see requirements-ml.txt) or set QORGAU_ASR explicitly."
+            )
 
         transcript = Transcript(
             call_id=call_id,
@@ -215,12 +225,22 @@ def transcript_from_turns(
     normalizer = TranscriptNormalizer()
     segments: list[TranscriptSegment] = []
     cursor = 1.5
+
+    def value(turn: dict, key: str, fallback: float) -> float:
+        """Tolerate a key that is present but null.
+
+        Pydantic's `model_dump()` emits `{"start": None}` for unset optional
+        fields, so `dict.get(key, default)` returns None rather than the default.
+        """
+        raw = turn.get(key)
+        return fallback if raw is None else float(raw)
+
     for turn in turns:
         text = (turn.get("text") or "").strip()
         if not text:
             continue
-        start = float(turn.get("start", cursor))
-        end = float(turn.get("end", start + max(2.0, min(9.0, len(text) / 14))))
+        start = value(turn, "start", cursor)
+        end = value(turn, "end", start + max(2.0, min(9.0, len(text) / 14)))
         result = normalizer.normalize(text) if normalize else None
         body = result.text if result else text
         segments.append(
@@ -232,7 +252,7 @@ def transcript_from_turns(
                 language=_language(turn.get("language"), body),
                 text=body,
                 text_original=text,
-                confidence=float(turn.get("confidence", 1.0)),
+                confidence=max(0.0, min(1.0, value(turn, "confidence", 1.0))),
                 normalization_notes=(result.notes if result else []),
             )
         )

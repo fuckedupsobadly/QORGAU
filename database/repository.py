@@ -39,6 +39,31 @@ from transcription.schemas import CallAnalysis, LLMAnalysis, Transcript, Transcr
 logger = logging.getLogger(__name__)
 
 
+def mask(text: str | None) -> str:
+    """Mask credentials in any free-text field that is about to be persisted.
+
+    Evidence quotes do not only live in the evidence column: the model's
+    explanation and the risk engine's audit trail both embed transcript spans
+    verbatim. Masking only the obvious column leaves the OTP in the database
+    file, so every free-text field goes through here.
+    """
+    if not text:
+        return text or ""
+    return mask_sensitive(text)[0]
+
+
+def as_utc(moment: datetime | None) -> datetime | None:
+    """Coerce a datetime to timezone-aware UTC.
+
+    SQLite has no timezone type, so a datetime written as aware comes back naive.
+    Comparing the two raises, which would break the retention job on exactly the
+    rows it exists to clean up — so every comparison goes through here.
+    """
+    if moment is None:
+        return None
+    return moment.replace(tzinfo=timezone.utc) if moment.tzinfo is None else moment
+
+
 # ---------------------------------------------------------------------------
 # Encryption at rest
 # ---------------------------------------------------------------------------
@@ -201,7 +226,6 @@ class CallRepository:
                 session.delete(row)
             session.flush()
             for event in analysis.risk_factors:
-                masked_evidence, _ = mask_sensitive(event.evidence)
                 session.add(
                     DetectedEvent(
                         call_id=call.id,
@@ -209,8 +233,8 @@ class CallRepository:
                         speaker=event.speaker.value,
                         category=event.category,
                         severity=event.severity.value,
-                        evidence=masked_evidence,
-                        reason=event.reason,
+                        evidence=mask(event.evidence),
+                        reason=mask(event.reason),
                         segment_seq=event.segment_index,
                         grounding_score=event.grounding_score,
                     )
@@ -225,15 +249,24 @@ class CallRepository:
                     tactics=analysis.tactics,
                     conversation_stage=analysis.conversation_stage,
                     requested_actions=analysis.requested_actions,
-                    explanation=analysis.explanation,
+                    explanation=mask(analysis.explanation),
                     recommended_action=analysis.recommended_action,
                     risk_score=risk.risk_score,
                     risk_level=risk.risk_level.value,
-                    risk_contributions=[c.model_dump() for c in risk.contributions],
-                    disagreement=risk.disagreement,
+                    # Contributions carry evidence quotes in `evidence` and can
+                    # carry them in `detail`; both are masked before storage.
+                    risk_contributions=[
+                        {
+                            **contribution.model_dump(),
+                            "evidence": mask(contribution.evidence),
+                            "detail": mask(contribution.detail),
+                        }
+                        for contribution in risk.contributions
+                    ],
+                    disagreement=mask(risk.disagreement) or None,
                     stage_timeline=result.stage_timeline,
                     model_backend=analysis.model_backend,
-                    dropped_findings=analysis.dropped_findings,
+                    dropped_findings=[mask(item) for item in analysis.dropped_findings],
                     is_realtime=is_realtime,
                 )
             )
@@ -395,10 +428,12 @@ class CallRepository:
         purged = {"recordings": 0, "transcripts": 0}
         with self.session() as session:
             for call in session.scalars(select(Call)).all():
-                if call.recording_purge_after and call.recording_purge_after <= moment and call.recording_ref:
+                recording_due = as_utc(call.recording_purge_after)
+                transcript_due = as_utc(call.transcript_purge_after)
+                if recording_due and recording_due <= moment and call.recording_ref:
                     call.recording_ref = None
                     purged["recordings"] += 1
-                if call.transcript_purge_after and call.transcript_purge_after <= moment:
+                if transcript_due and transcript_due <= moment:
                     for row in call.segments:
                         if row.text_encrypted is not None or row.text_masked != "[purged]":
                             row.text_encrypted = None

@@ -47,7 +47,7 @@
     },
     "json_validity": 1.0,
     "evidence_grounding_rate": 1.0,
-    "mean_latency_ms": 3.7,
+    "mean_latency_ms": 3.8,
     "mean_risk_scam": 70.7,
     "mean_risk_legitimate": 0.6,
     "risk_band_distribution": {
