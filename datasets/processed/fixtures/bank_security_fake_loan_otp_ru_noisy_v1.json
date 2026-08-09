@@ -1,0 +1,83 @@
+{
+  "call_id": "bank_security_fake_loan_otp_ru_noisy_v1",
+  "call_direction": "outbound",
+  "family": "bank_security_fake_loan_otp",
+  "family_label": "Bank security → invented loan → OTP theft",
+  "language_mode": "ru",
+  "asr_noisy": true,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 6.7,
+      "language": "ru",
+      "text": "Здравствуйте это служба безопасности Halyk Bank меня зовут Асель Нурланова",
+      "confidence": 0.67
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 8.2,
+      "end": 10.6,
+      "language": "mixed",
+      "text": "Да, слушаю вас.",
+      "confidence": 0.42
+    },
+    {
+      "speaker": "CALLER",
+      "start": 12.2,
+      "end": 18.1,
+      "language": "ru",
+      "text": "на ваше имя в другом городе оформляется кредит на 2 миллиона 800 тысяч эм тенге",
+      "confidence": 0.55
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 19.3,
+      "end": 21.9,
+      "language": "ru",
+      "text": "Но я ничего не оформлял. Это точно?",
+      "confidence": 0.56
+    },
+    {
+      "speaker": "CALLER",
+      "start": 23.1,
+      "end": 30.3,
+      "language": "ru",
+      "text": "именно по... поэтому нужно срочно остановить операцию, иначе деньги спишут в течение дести минут.",
+      "confidence": 0.46
+    },
+    {
+      "speaker": "CALLER",
+      "start": 32.0,
+      "end": 37.6,
+      "language": "mixed",
+      "text": "ммм Не отключайтесь и никому не говорите об этом разговоре идёт ммм проверка",
+      "confidence": 0.68
+    },
+    {
+      "speaker": "CALLER",
+      "start": 38.2,
+      "end": 43.4,
+      "language": "ru",
+      "text": "Чт... Чтобы отменить заявку, система сейчас пришлёт вам подтверждение.",
+      "confidence": 0.54
+    },
+    {
+      "speaker": "CALLER",
+      "start": 45.6,
+      "end": 50.2,
+      "language": "ru",
+      "text": "Вам ээ пришёл код из СМС? Продиктуйте его мне, я введу отмену.",
+      "confidence": 0.7
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 51.3,
+      "end": 53.7,
+      "language": "ru",
+      "text": "Хорошо, сейчас посмотрю.",
+      "confidence": 0.72
+    }
+  ]
+}

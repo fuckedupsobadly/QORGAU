@@ -1,0 +1,67 @@
+{
+  "call_id": "police_investigator_money_mule_kk_noisy_v1",
+  "call_direction": "outbound",
+  "family": "police_investigator_money_mule",
+  "family_label": "Police / investigator → criminal case → money transfer",
+  "language_mode": "kk",
+  "asr_noisy": true,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 7.2,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе, бұл Алматы полция департаментінің аға тергеушісі, капитан Ержанов.",
+      "confidence": 0.72
+    },
+    {
+      "speaker": "CALLER",
+      "start": 9.0,
+      "end": 15.2,
+      "language": "mixed",
+      "text": "Сіздің деректемелеріңізге алаяқтық схеманы қаржыландыру туралы қылмыстық іс қозғалды",
+      "confidence": 0.46
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 16.3,
+      "end": 19.4,
+      "language": "kk",
+      "text": "Түсінмедім, мен ммм ештеңе жасаған жоқпын.",
+      "confidence": 0.43
+    },
+    {
+      "speaker": "CALLER",
+      "start": 20.1,
+      "end": 26.3,
+      "language": "mixed",
+      "text": "Егер қаражаттың заңдылығын растамасаңыз, сізді қылмыстық әм жауапкершілікке тартады.",
+      "confidence": 0.59
+    },
+    {
+      "speaker": "CALLER",
+      "start": 28.1,
+      "end": 33.8,
+      "language": "kk",
+      "text": "әңгіме тергеу құпиясы шеңберінде өтеді, туыстарыңызды қоса, ешкімге айтпаңыз.",
+      "confidence": 0.44
+    },
+    {
+      "speaker": "CALLER",
+      "start": 36.0,
+      "end": 43.5,
+      "language": "mixed",
+      "text": "Ақшаның шығу тегін тексеру үшін оны тергудің транзиттік шо... шотына аударыңыз, деректемелерді берем.",
+      "confidence": 0.51
+    },
+    {
+      "speaker": "CALLER",
+      "start": 44.1,
+      "end": 50.2,
+      "language": "mixed",
+      "text": "Телефонды тастамаңыз және банкке қоңырау соқпаңыз, әйтпесе бұл жасыру деп саналады.",
+      "confidence": 0.52
+    }
+  ]
+}

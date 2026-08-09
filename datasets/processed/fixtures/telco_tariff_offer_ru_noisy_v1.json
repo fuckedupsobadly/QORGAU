@@ -1,0 +1,51 @@
+{
+  "call_id": "telco_tariff_offer_ru_noisy_v1",
+  "call_direction": "outbound",
+  "family": "telco_tariff_offer",
+  "family_label": "Mobile operator offers a tariff (marketing, no credentials)",
+  "language_mode": "ru",
+  "asr_noisy": true,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 5.9,
+      "language": "ru",
+      "text": "Здравствуйте, это оператор Activ, предложение по вашему тарифу.",
+      "confidence": 0.44
+    },
+    {
+      "speaker": "CALLER",
+      "start": 7.3,
+      "end": 13.4,
+      "language": "ru",
+      "text": "За ту же цену можно получить больше интернета подключение через приложение или USSD",
+      "confidence": 0.6
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 14.6,
+      "end": 17.0,
+      "language": "ru",
+      "text": "А это бесплатно?",
+      "confidence": 0.55
+    },
+    {
+      "speaker": "CALLER",
+      "start": 18.4,
+      "end": 24.3,
+      "language": "ru",
+      "text": "Подключение бесплатное, стоимость тарифа не меняется. Решение полностью за вами.",
+      "confidence": 0.68
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 25.6,
+      "end": 28.0,
+      "language": "ru",
+      "text": "хорошо я подумаю",
+      "confidence": 0.53
+    }
+  ]
+}

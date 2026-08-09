@@ -1,0 +1,51 @@
+{
+  "call_id": "fake_refund_card_ru_v1",
+  "call_direction": "outbound",
+  "family": "fake_refund_card",
+  "family_label": "Fake refund → card credentials",
+  "language_mode": "ru",
+  "asr_noisy": false,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 7.0,
+      "language": "ru",
+      "text": "Здравствуйте, интернет-магазин, отдел возвратов, по вашему отменённому заказу.",
+      "confidence": 0.97
+    },
+    {
+      "speaker": "CALLER",
+      "start": 8.0,
+      "end": 14.1,
+      "language": "ru",
+      "text": "Вам положена компенсация двадцать девять тысяч тенге, но реквизиты не подтянулись.",
+      "confidence": 0.96
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 16.1,
+      "end": 18.5,
+      "language": "ru",
+      "text": "А какой заказ?",
+      "confidence": 0.97
+    },
+    {
+      "speaker": "CALLER",
+      "start": 19.2,
+      "end": 24.7,
+      "language": "mixed",
+      "text": "Заказ от прошлой недели. Продиктуйте данные карты для зачисления возврата.",
+      "confidence": 0.95
+    },
+    {
+      "speaker": "CALLER",
+      "start": 26.1,
+      "end": 30.3,
+      "language": "ru",
+      "text": "И код, который придёт в сообщении, он подтвердит возврат.",
+      "confidence": 0.94
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "call_id": "bank_app_update_apk_mixed_noisy_v0",
+  "call_direction": "outbound",
+  "family": "bank_app_update_apk",
+  "family_label": "'Mandatory app update' → malicious APK (held out)",
+  "language_mode": "mixed",
+  "asr_noisy": true,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 6.6,
+      "language": "mixed",
+      "text": "Қайырлы күн Jusan Bank қауіпсіздік бөлімі обязательное обновление бойынша",
+      "confidence": 0.55
+    },
+    {
+      "speaker": "CALLER",
+      "start": 8.7,
+      "end": 14.3,
+      "language": "ru",
+      "text": "Ваша версия приложения устарела, поэтому карта будет заблокирована сегодня.",
+      "confidence": 0.57
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 15.5,
+      "end": 18.2,
+      "language": "kk",
+      "text": "Менде бәрі жұмыс істеп тұр эм сияқты",
+      "confidence": 0.53
+    },
+    {
+      "speaker": "CALLER",
+      "start": 20.1,
+      "end": 26.5,
+      "language": "kk",
+      "text": "мен ссылка жі... жіберем, apk файлды жүктеп, ескі қолданбаның үс... үстінен орнатыңыз.",
+      "confidence": 0.61
+    },
+    {
+      "speaker": "CALLER",
+      "start": 27.8,
+      "end": 35.0,
+      "language": "mixed",
+      "text": "Орнатқаннан кейін логин мен құпия сөзді енгізіңіз, содан кейін синхрондау үшін СМС кодын айтыңыз.",
+      "confidence": 0.5
+    }
+  ]
+}

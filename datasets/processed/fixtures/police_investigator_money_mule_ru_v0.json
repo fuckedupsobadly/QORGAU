@@ -1,0 +1,67 @@
+{
+  "call_id": "police_investigator_money_mule_ru_v0",
+  "call_direction": "outbound",
+  "family": "police_investigator_money_mule",
+  "family_label": "Police / investigator → criminal case → money transfer",
+  "language_mode": "ru",
+  "asr_noisy": false,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 7.3,
+      "language": "mixed",
+      "text": "Здравствуйте, это старший следователь департамента полиции Алматы, капитан Ержанов.",
+      "confidence": 0.92
+    },
+    {
+      "speaker": "CALLER",
+      "start": 8.0,
+      "end": 14.0,
+      "language": "ru",
+      "text": "На ваши реквизиты возбуждено уголовное дело о финансировании мошеннической схемы.",
+      "confidence": 0.94
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 14.7,
+      "end": 17.1,
+      "language": "mixed",
+      "text": "Я не понимаю, я ничего не делал.",
+      "confidence": 0.95
+    },
+    {
+      "speaker": "CALLER",
+      "start": 18.1,
+      "end": 24.2,
+      "language": "mixed",
+      "text": "Если не подтвердите законность средств, вас привлекут к уголовной ответственности.",
+      "confidence": 0.99
+    },
+    {
+      "speaker": "CALLER",
+      "start": 26.0,
+      "end": 32.4,
+      "language": "ru",
+      "text": "Разговор проходит в рамках тайны следствия, никому не сообщайте, включая родственников.",
+      "confidence": 0.91
+    },
+    {
+      "speaker": "CALLER",
+      "start": 33.7,
+      "end": 40.6,
+      "language": "ru",
+      "text": "Для проверки происхождения денег переведите их на транзитный счёт следствия, я дам реквизиты.",
+      "confidence": 0.9
+    },
+    {
+      "speaker": "CALLER",
+      "start": 42.2,
+      "end": 48.0,
+      "language": "mixed",
+      "text": "Не кладите трубку и не звоните в банк, иначе это будет расценено как сокрытие.",
+      "confidence": 0.94
+    }
+  ]
+}

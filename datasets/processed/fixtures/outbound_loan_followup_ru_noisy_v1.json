@@ -1,0 +1,59 @@
+{
+  "call_id": "outbound_loan_followup_ru_noisy_v1",
+  "call_direction": "outbound",
+  "family": "outbound_loan_followup",
+  "family_label": "Bank follows up on a loan application the customer submitted",
+  "language_mode": "ru",
+  "asr_noisy": true,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 7.1,
+      "language": "ru",
+      "text": "здравствуйте я звоню из fortebank по ну поводу вашей заявки на кредит от втрника",
+      "confidence": 0.56
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 7.5,
+      "end": 9.9,
+      "language": "mixed",
+      "text": "Да, я ээ подавал заявку.",
+      "confidence": 0.53
+    },
+    {
+      "speaker": "CALLER",
+      "start": 11.4,
+      "end": 17.5,
+      "language": "ru",
+      "text": "Заявка предварительно одобрена на два ммм миллиона тенге под двадцать один процент.",
+      "confidence": 0.48
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 18.6,
+      "end": 21.0,
+      "language": "ru",
+      "text": "А как подписать договор?",
+      "confidence": 0.62
+    },
+    {
+      "speaker": "CALLER",
+      "start": 22.0,
+      "end": 28.4,
+      "language": "ru",
+      "text": "подписать можно в мобильном приложении или в любом отделении с удостоверением личности.",
+      "confidence": 0.61
+    },
+    {
+      "speaker": "CALLER",
+      "start": 30.1,
+      "end": 33.3,
+      "language": "ru",
+      "text": "никаких кодов по телфону мы не запрашиваем.",
+      "confidence": 0.69
+    }
+  ]
+}

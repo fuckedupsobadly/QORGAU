@@ -1,0 +1,271 @@
+{
+  "backend": "reference",
+  "split": "train",
+  "overall": {
+    "n": 180,
+    "n_scam": 96,
+    "n_legitimate": 84,
+    "scam_recall_strict": 0.8229,
+    "false_positive_rate_strict": 0.0,
+    "scam_recall_flagged": 1.0,
+    "false_positive_rate_flagged": 0.0,
+    "scam_recall_risk_engine": 0.9792,
+    "false_positive_rate_risk_engine": 0.0,
+    "classification_f1_strict": {
+      "precision": 1.0,
+      "recall": 0.8229,
+      "f1": 0.9029
+    },
+    "classification_f1_flagged": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "classification_f1_risk_engine": {
+      "precision": 1.0,
+      "recall": 0.9792,
+      "f1": 0.9895
+    },
+    "exact_classification_accuracy": 0.9056,
+    "scam_type": {
+      "precision": 0.5907,
+      "recall": 0.8137,
+      "f1": 0.6845,
+      "exact_set_match": 0.1771
+    },
+    "tactic": {
+      "precision": 0.8956,
+      "recall": 0.6972,
+      "f1": 0.784,
+      "exact_set_match": 0.4889
+    },
+    "event_category": {
+      "precision": 0.8727,
+      "recall": 0.6531,
+      "f1": 0.7471,
+      "exact_set_match": 0.2556
+    },
+    "json_validity": 1.0,
+    "evidence_grounding_rate": 1.0,
+    "mean_latency_ms": 3.7,
+    "mean_risk_scam": 70.7,
+    "mean_risk_legitimate": 0.6,
+    "risk_band_distribution": {
+      "SAFE": {
+        "scam": 0,
+        "legitimate": 84
+      },
+      "SUSPICIOUS": {
+        "scam": 2,
+        "legitimate": 0
+      },
+      "HIGH_RISK": {
+        "scam": 51,
+        "legitimate": 0
+      },
+      "CRITICAL": {
+        "scam": 43,
+        "legitimate": 0
+      }
+    },
+    "best_threshold_at_5pct_fpr": {
+      "threshold": 10,
+      "tp": 96,
+      "fp": 0,
+      "tn": 84,
+      "fn": 0,
+      "scam_recall": 1.0,
+      "false_positive_rate": 0.0,
+      "precision": 1.0,
+      "f1": 1.0
+    }
+  },
+  "by_slice": {
+    "asr_noisy": {
+      "n": 90,
+      "n_scam": 48,
+      "n_legitimate": 42,
+      "scam_recall_strict": 0.7708,
+      "false_positive_rate_strict": 0.0,
+      "scam_recall_risk_engine": 0.9583,
+      "false_positive_rate_risk_engine": 0.0,
+      "exact_classification_accuracy": 0.8778,
+      "tactic": {
+        "precision": 0.8919,
+        "recall": 0.6707,
+        "f1": 0.7657,
+        "exact_set_match": 0.4667
+      },
+      "json_validity": 1.0,
+      "evidence_grounding_rate": 1.0,
+      "mean_risk_scam": 69.7,
+      "mean_risk_legitimate": 0.5
+    },
+    "kk": {
+      "n": 60,
+      "n_scam": 32,
+      "n_legitimate": 28,
+      "scam_recall_strict": 0.7812,
+      "false_positive_rate_strict": 0.0,
+      "scam_recall_risk_engine": 0.9688,
+      "false_positive_rate_risk_engine": 0.0,
+      "exact_classification_accuracy": 0.8833,
+      "tactic": {
+        "precision": 0.873,
+        "recall": 0.6707,
+        "f1": 0.7586,
+        "exact_set_match": 0.45
+      },
+      "json_validity": 1.0,
+      "evidence_grounding_rate": 1.0,
+      "mean_risk_scam": 69.9,
+      "mean_risk_legitimate": 0.5
+    },
+    "legitimate": {
+      "n": 84,
+      "n_scam": 0,
+      "n_legitimate": 84,
+      "scam_recall_strict": 0.0,
+      "false_positive_rate_strict": 0.0,
+      "scam_recall_risk_engine": 0.0,
+      "false_positive_rate_risk_engine": 0.0,
+      "exact_classification_accuracy": 1.0,
+      "tactic": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "exact_set_match": 0.7143
+      },
+      "json_validity": 1.0,
+      "evidence_grounding_rate": 1.0,
+      "mean_risk_scam": 0.0,
+      "mean_risk_legitimate": 0.6
+    },
+    "mixed": {
+      "n": 60,
+      "n_scam": 32,
+      "n_legitimate": 28,
+      "scam_recall_strict": 0.8125,
+      "false_positive_rate_strict": 0.0,
+      "scam_recall_risk_engine": 0.9688,
+      "false_positive_rate_risk_engine": 0.0,
+      "exact_classification_accuracy": 0.9,
+      "tactic": {
+        "precision": 0.9062,
+        "recall": 0.7073,
+        "f1": 0.7945,
+        "exact_set_match": 0.5
+      },
+      "json_validity": 1.0,
+      "evidence_grounding_rate": 1.0,
+      "mean_risk_scam": 71.1,
+      "mean_risk_legitimate": 0.6
+    },
+    "obvious": {
+      "n": 36,
+      "n_scam": 36,
+      "n_legitimate": 0,
+      "scam_recall_strict": 1.0,
+      "false_positive_rate_strict": 0.0,
+      "scam_recall_risk_engine": 1.0,
+      "false_positive_rate_risk_engine": 0.0,
+      "exact_classification_accuracy": 1.0,
+      "tactic": {
+        "precision": 0.9789,
+        "recall": 0.7381,
+        "f1": 0.8416,
+        "exact_set_match": 0.3333
+      },
+      "json_validity": 1.0,
+      "evidence_grounding_rate": 1.0,
+      "mean_risk_scam": 75.9,
+      "mean_risk_legitimate": 0.0
+    },
+    "ru": {
+      "n": 60,
+      "n_scam": 32,
+      "n_legitimate": 28,
+      "scam_recall_strict": 0.875,
+      "false_positive_rate_strict": 0.0,
+      "scam_recall_risk_engine": 1.0,
+      "false_positive_rate_risk_engine": 0.0,
+      "exact_classification_accuracy": 0.9333,
+      "tactic": {
+        "precision": 0.907,
+        "recall": 0.7134,
+        "f1": 0.7986,
+        "exact_set_match": 0.5167
+      },
+      "json_validity": 1.0,
+      "evidence_grounding_rate": 1.0,
+      "mean_risk_scam": 71.2,
+      "mean_risk_legitimate": 0.6
+    },
+    "scam": {
+      "n": 96,
+      "n_scam": 96,
+      "n_legitimate": 0,
+      "scam_recall_strict": 0.8229,
+      "false_positive_rate_strict": 0.0,
+      "scam_recall_risk_engine": 0.9792,
+      "false_positive_rate_risk_engine": 0.0,
+      "exact_classification_accuracy": 0.8229,
+      "tactic": {
+        "precision": 0.9554,
+        "recall": 0.6972,
+        "f1": 0.8061,
+        "exact_set_match": 0.2917
+      },
+      "json_validity": 1.0,
+      "evidence_grounding_rate": 1.0,
+      "mean_risk_scam": 70.7,
+      "mean_risk_legitimate": 0.0
+    },
+    "subtle": {
+      "n": 60,
+      "n_scam": 60,
+      "n_legitimate": 0,
+      "scam_recall_strict": 0.7167,
+      "false_positive_rate_strict": 0.0,
+      "scam_recall_risk_engine": 0.9667,
+      "false_positive_rate_risk_engine": 0.0,
+      "exact_classification_accuracy": 0.7167,
+      "tactic": {
+        "precision": 0.929,
+        "recall": 0.6542,
+        "f1": 0.7677,
+        "exact_set_match": 0.2667
+      },
+      "json_validity": 1.0,
+      "evidence_grounding_rate": 1.0,
+      "mean_risk_scam": 67.6,
+      "mean_risk_legitimate": 0.0
+    }
+  },
+  "failures": [
+    {
+      "call_id": "job_offer_advance_fee_kk_noisy_v0",
+      "gold": "SCAM",
+      "predicted": "SUSPICIOUS",
+      "risk_score": 45,
+      "slices": [
+        "kk",
+        "subtle",
+        "scam",
+        "asr_noisy"
+      ]
+    },
+    {
+      "call_id": "job_offer_advance_fee_mixed_noisy_v1",
+      "gold": "SCAM",
+      "predicted": "SUSPICIOUS",
+      "risk_score": 45,
+      "slices": [
+        "mixed",
+        "subtle",
+        "scam",
+        "asr_noisy"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+# QORGAU — core runtime. Everything in this file is enough to run the
+# dashboard, the API, the corpus builder and the evaluation harness.
+pydantic>=2.6
+sqlalchemy>=2.0
+streamlit>=1.30
+fastapi>=0.110
+uvicorn[standard]>=0.27
+websockets>=12.0
+python-multipart>=0.0.9
+pandas>=2.0
+cryptography>=42.0          # encryption at rest for verbatim transcripts

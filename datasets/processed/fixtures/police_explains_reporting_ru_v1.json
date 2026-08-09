@@ -1,0 +1,51 @@
+{
+  "call_id": "police_explains_reporting_ru_v1",
+  "call_direction": "inbound",
+  "family": "police_explains_reporting",
+  "family_label": "Police officer explains how to report a scam",
+  "language_mode": "ru",
+  "asr_noisy": false,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "VICTIM",
+      "start": 1.2,
+      "end": 6.5,
+      "language": "ru",
+      "text": "Здравствуйте, мне звонили мошенники, представлялись банком. Что делать?",
+      "confidence": 0.92
+    },
+    {
+      "speaker": "CALLER",
+      "start": 8.6,
+      "end": 15.7,
+      "language": "ru",
+      "text": "Это участковый инспектор полиции. Если денег не перевели, ущерба нет, но заявление подать стоит.",
+      "confidence": 0.95
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 17.3,
+      "end": 19.7,
+      "language": "mixed",
+      "text": "А куда обращаться?",
+      "confidence": 0.96
+    },
+    {
+      "speaker": "CALLER",
+      "start": 20.5,
+      "end": 27.8,
+      "language": "ru",
+      "text": "Заявление можно подать в отделении полиции или через eGov, приложите скриншоты и номер звонившего.",
+      "confidence": 0.96
+    },
+    {
+      "speaker": "CALLER",
+      "start": 29.1,
+      "end": 35.8,
+      "language": "mixed",
+      "text": "И запомните: никогда не сообщайте код из СМС и не переводите деньги по просьбе по телефону.",
+      "confidence": 0.88
+    }
+  ]
+}

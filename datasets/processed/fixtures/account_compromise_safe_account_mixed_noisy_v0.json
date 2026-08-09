@@ -1,0 +1,75 @@
+{
+  "call_id": "account_compromise_safe_account_mixed_noisy_v0",
+  "call_direction": "outbound",
+  "family": "account_compromise_safe_account",
+  "family_label": "Compromised account → transfer to a 'safe account'",
+  "language_mode": "mixed",
+  "asr_noisy": true,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 6.7,
+      "language": "mixed",
+      "text": "Қайрлы күн вас беспокоит Ұлттық Банктің фи финансовый әм мониторинг бөлімі",
+      "confidence": 0.54
+    },
+    {
+      "speaker": "CALLER",
+      "start": 8.9,
+      "end": 14.3,
+      "language": "ru",
+      "text": "К вашему счёту получили доступ третьи лица зафиксирована попытка списания",
+      "confidence": 0.5
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 14.8,
+      "end": 17.2,
+      "language": "kk",
+      "text": "Бұл қалай болды?",
+      "confidence": 0.72
+    },
+    {
+      "speaker": "CALLER",
+      "start": 18.7,
+      "end": 23.9,
+      "language": "ru",
+      "text": "ваши деньги в опасности, счёт будет заблокирован вместе со средствами.",
+      "confidence": 0.46
+    },
+    {
+      "speaker": "CALLER",
+      "start": 24.9,
+      "end": 29.4,
+      "language": "mixed",
+      "text": "Ақшаны сақтау үшін жалғыз жол — оны безопасный счётқа аудару.",
+      "confidence": 0.49
+    },
+    {
+      "speaker": "CALLER",
+      "start": 31.1,
+      "end": 37.5,
+      "language": "ru",
+      "text": "подойдите к банкомату и внесите всю сумму по номеру, ко... который я продиктую. срочно.",
+      "confidence": 0.71
+    },
+    {
+      "speaker": "CALLER",
+      "start": 38.1,
+      "end": 44.0,
+      "language": "kk",
+      "text": "эм Бөлімше қызметкерлеріне операцияның мақсатын айтпаңыз бұл тексеру құ құпиясы",
+      "confidence": 0.54
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 45.0,
+      "end": 47.4,
+      "language": "ru",
+      "text": "Хорошо сейчас поеду",
+      "confidence": 0.64
+    }
+  ]
+}

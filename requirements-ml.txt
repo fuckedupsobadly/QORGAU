@@ -1,0 +1,24 @@
+# QORGAU — machine-learning extras. Needed for:
+#   * fine-tuning the fraud LLM       (training/train.py)
+#   * serving the fine-tuned adapter  (QORGAU_LLM_BACKEND=local_adapter)
+#   * real speech-to-text             (audio/asr.py)
+#   * neural VAD / diarization        (audio/vad.py, audio/diarization.py)
+#
+# The app runs without any of these, on the reference analysis backend.
+torch>=2.2
+transformers>=4.44
+peft>=0.11
+accelerate>=0.30
+bitsandbytes>=0.43 ; platform_system == "Linux"
+datasets>=2.19
+sentencepiece>=0.2
+
+# speech
+faster-whisper>=1.0
+# pyannote.audio>=3.1        # optional neural diarization (needs a HF token)
+
+# optional prompt-only API baseline
+anthropic>=0.40
+
+# tests
+pytest>=8.0

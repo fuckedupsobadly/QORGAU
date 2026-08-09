@@ -1,0 +1,51 @@
+{
+  "call_id": "genuine_courier_address_ru_noisy_v1",
+  "call_direction": "outbound",
+  "family": "genuine_courier_address",
+  "family_label": "Real courier confirming an address",
+  "language_mode": "ru",
+  "asr_noisy": true,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 6.5,
+      "language": "ru",
+      "text": "Здравствуйте, курьер службы доставки, у ме... меня посылка на ваш адрес.",
+      "confidence": 0.7
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 7.5,
+      "end": 9.9,
+      "language": "mixed",
+      "text": "Да, я заказывал наушники.",
+      "confidence": 0.54
+    },
+    {
+      "speaker": "CALLER",
+      "start": 11.6,
+      "end": 16.5,
+      "language": "ru",
+      "text": "Подъезд вт... второй, домофон работает? Буду через двадцать минут.",
+      "confidence": 0.65
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 17.2,
+      "end": 19.6,
+      "language": "mixed",
+      "text": "ну Да, работает, поднимайтесь.",
+      "confidence": 0.66
+    },
+    {
+      "speaker": "CALLER",
+      "start": 21.1,
+      "end": 28.8,
+      "language": "ru",
+      "text": "Оплата при получении картой или на... наличными, код подтверждения назовёте вы мне из своего приложения.",
+      "confidence": 0.53
+    }
+  ]
+}

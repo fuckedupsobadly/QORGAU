@@ -1,0 +1,51 @@
+{
+  "call_id": "telco_tariff_offer_mixed_v0",
+  "call_direction": "outbound",
+  "family": "telco_tariff_offer",
+  "family_label": "Mobile operator offers a tariff (marketing, no credentials)",
+  "language_mode": "mixed",
+  "asr_noisy": false,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 6.0,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе, бұл Activ оператор, тарифіңіз бойынша предложение.",
+      "confidence": 0.88
+    },
+    {
+      "speaker": "CALLER",
+      "start": 8.1,
+      "end": 14.4,
+      "language": "ru",
+      "text": "За ту же цену можно получить больше интернета, подключение через приложение или USSD.",
+      "confidence": 0.91
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 16.0,
+      "end": 18.4,
+      "language": "kk",
+      "text": "Бұл тегін бе?",
+      "confidence": 0.98
+    },
+    {
+      "speaker": "CALLER",
+      "start": 19.3,
+      "end": 25.2,
+      "language": "ru",
+      "text": "Подключение бесплатное, стоимость тарифа не меняется. Решение полностью за вами.",
+      "confidence": 0.9
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 26.0,
+      "end": 28.4,
+      "language": "mixed",
+      "text": "Жарайды, ойланамын.",
+      "confidence": 0.99
+    }
+  ]
+}

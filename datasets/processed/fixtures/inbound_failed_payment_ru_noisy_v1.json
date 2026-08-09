@@ -1,0 +1,59 @@
+{
+  "call_id": "inbound_failed_payment_ru_noisy_v1",
+  "call_direction": "inbound",
+  "family": "inbound_failed_payment",
+  "family_label": "Customer calls the bank about a declined payment",
+  "language_mode": "ru",
+  "asr_noisy": true,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "VICTIM",
+      "start": 1.2,
+      "end": 6.5,
+      "language": "ru",
+      "text": "Здравствуйте, я хотел узнать, почему не прошла оплата картой в магазине.",
+      "confidence": 0.51
+    },
+    {
+      "speaker": "CALLER",
+      "start": 7.1,
+      "end": 15.2,
+      "language": "ru",
+      "text": "Здравствуйте, это Halyk Ba... Bank, оператор Мадина. Назовите последние четыре цифры карты для идентификации.",
+      "confidence": 0.71
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 17.0,
+      "end": 19.4,
+      "language": "ru",
+      "text": "четыре, восемь, два, один.",
+      "confidence": 0.47
+    },
+    {
+      "speaker": "CALLER",
+      "start": 20.6,
+      "end": 27.7,
+      "language": "ru",
+      "text": "Вижу отклонение по ли... лимиту ну на интернет-операции. Лимит можно изменить в приложении сами.",
+      "confidence": 0.51
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 28.7,
+      "end": 31.1,
+      "language": "ru",
+      "text": "Понятно, спасибо большое.",
+      "confidence": 0.45
+    },
+    {
+      "speaker": "CALLER",
+      "start": 32.5,
+      "end": 38.1,
+      "language": "mixed",
+      "text": "Пожалуйста Код эм из СМС мы никогда ммм не спршиваем никому его не сообщайте",
+      "confidence": 0.73
+    }
+  ]
+}

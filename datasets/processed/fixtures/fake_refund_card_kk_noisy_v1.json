@@ -1,0 +1,51 @@
+{
+  "call_id": "fake_refund_card_kk_noisy_v1",
+  "call_direction": "outbound",
+  "family": "fake_refund_card",
+  "family_label": "Fake refund → card credentials",
+  "language_mode": "kk",
+  "asr_noisy": true,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 6.9,
+      "language": "mixed",
+      "text": "сәлеметсіз бе, интернет-дүкен, қайтару бөлімі, жойылған тапсырысыңыз бойынша.",
+      "confidence": 0.67
+    },
+    {
+      "speaker": "CALLER",
+      "start": 9.0,
+      "end": 14.5,
+      "language": "mixed",
+      "text": "Сізге жиырма тоғыз мың теңге өтемақы тиесілі бірақ деректемелер тартылмады",
+      "confidence": 0.5
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 15.5,
+      "end": 17.9,
+      "language": "mixed",
+      "text": "Қандай тапсырыс",
+      "confidence": 0.63
+    },
+    {
+      "speaker": "CALLER",
+      "start": 18.5,
+      "end": 24.2,
+      "language": "mixed",
+      "text": "Өткен аптадағы тапсырыс Қайтаруды есепке алу үшін карта ну деректерін айтыңыз",
+      "confidence": 0.58
+    },
+    {
+      "speaker": "CALLER",
+      "start": 26.1,
+      "end": 30.5,
+      "language": "mixed",
+      "text": "Хабарламада келетін кодты да айтыңыз, ол қайтаруды растайды.",
+      "confidence": 0.49
+    }
+  ]
+}

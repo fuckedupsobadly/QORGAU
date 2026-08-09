@@ -1,0 +1,51 @@
+{
+  "call_id": "fake_refund_card_mixed_noisy_v1",
+  "call_direction": "outbound",
+  "family": "fake_refund_card",
+  "family_label": "Fake refund → card credentials",
+  "language_mode": "mixed",
+  "asr_noisy": true,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 6.8,
+      "language": "mixed",
+      "text": "сәлеметсіз бе интернет-магазин отдел возвратов жойылған тапсырысыңыз бойынша",
+      "confidence": 0.44
+    },
+    {
+      "speaker": "CALLER",
+      "start": 8.1,
+      "end": 14.2,
+      "language": "ru",
+      "text": "вам положена компенсация двадцать девять тысяч ээ тенге но реквизиты не подтянулись",
+      "confidence": 0.7
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 14.6,
+      "end": 17.0,
+      "language": "mixed",
+      "text": "Қандай тапсырыс?",
+      "confidence": 0.44
+    },
+    {
+      "speaker": "CALLER",
+      "start": 18.0,
+      "end": 22.4,
+      "language": "mixed",
+      "text": "ммм өткен аптдағы заказ. возврат үшін данные карты айтыңыз.",
+      "confidence": 0.59
+    },
+    {
+      "speaker": "CALLER",
+      "start": 23.0,
+      "end": 27.4,
+      "language": "mixed",
+      "text": "Хабарламада келетін кодты да айтңыз, ол қайтаруды растайды.",
+      "confidence": 0.5
+    }
+  ]
+}

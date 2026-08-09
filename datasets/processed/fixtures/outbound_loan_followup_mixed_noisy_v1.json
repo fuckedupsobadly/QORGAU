@@ -1,0 +1,59 @@
+{
+  "call_id": "outbound_loan_followup_mixed_noisy_v1",
+  "call_direction": "outbound",
+  "family": "outbound_loan_followup",
+  "family_label": "Bank follows up on a loan application the customer submitted",
+  "language_mode": "mixed",
+  "asr_noisy": true,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 6.8,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе я звоню из ForteBank сейсенбідегі кр кредит өтініміңіз бойынша",
+      "confidence": 0.66
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 7.7,
+      "end": 10.1,
+      "language": "mixed",
+      "text": "Да, я подавал заявку.",
+      "confidence": 0.44
+    },
+    {
+      "speaker": "CALLER",
+      "start": 10.7,
+      "end": 16.2,
+      "language": "mixed",
+      "text": "Өтінім жиырма бір па... пайызбен екі миллион теңгеге алдын ала мақұлданды.",
+      "confidence": 0.68
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 18.1,
+      "end": 20.5,
+      "language": "ru",
+      "text": "А эм как подписать договор",
+      "confidence": 0.5
+    },
+    {
+      "speaker": "CALLER",
+      "start": 22.1,
+      "end": 28.0,
+      "language": "mixed",
+      "text": "Мобильді қолданбада немесе жеке куәлікпен кез келген бөлімшеде қол қоюға болады",
+      "confidence": 0.63
+    },
+    {
+      "speaker": "CALLER",
+      "start": 28.6,
+      "end": 31.9,
+      "language": "ru",
+      "text": "никаких кодов по телефону мы не запрашиваем.",
+      "confidence": 0.51
+    }
+  ]
+}

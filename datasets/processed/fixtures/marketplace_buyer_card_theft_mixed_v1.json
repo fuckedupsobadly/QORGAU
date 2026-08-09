@@ -1,0 +1,67 @@
+{
+  "call_id": "marketplace_buyer_card_theft_mixed_v1",
+  "call_direction": "outbound",
+  "family": "marketplace_buyer_card_theft",
+  "family_label": "Marketplace 'buyer' → card data theft",
+  "language_mode": "mixed",
+  "asr_noisy": false,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 5.2,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе, я по объявлению на OLX, диванды аламын.",
+      "confidence": 0.92
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 6.1,
+      "end": 8.5,
+      "language": "mixed",
+      "text": "Отлично, когда заберёте?",
+      "confidence": 0.97
+    },
+    {
+      "speaker": "CALLER",
+      "start": 10.2,
+      "end": 15.8,
+      "language": "mixed",
+      "text": "Мен қазір Kaspi жеткізу арқылы төлеймін, оператор аударымды рәсімдеп қойды.",
+      "confidence": 0.98
+    },
+    {
+      "speaker": "CALLER",
+      "start": 16.9,
+      "end": 22.8,
+      "language": "mixed",
+      "text": "Ақша түсу үшін номер карты толық, срок действия және артындағы үш санды айтыңыз.",
+      "confidence": 0.9
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 23.3,
+      "end": 25.7,
+      "language": "mixed",
+      "text": "Ақша алу үшін CVV неге керек?",
+      "confidence": 0.9
+    },
+    {
+      "speaker": "CALLER",
+      "start": 27.3,
+      "end": 34.9,
+      "language": "ru",
+      "text": "Так работает система, иначе перевод отменится и вы потеряете покупателя. Быстрее, у меня мало времени.",
+      "confidence": 0.93
+    },
+    {
+      "speaker": "CALLER",
+      "start": 36.3,
+      "end": 40.2,
+      "language": "mixed",
+      "text": "СМС-тегі кодты да айтыңыз, ол есепке алуды растайды.",
+      "confidence": 0.94
+    }
+  ]
+}

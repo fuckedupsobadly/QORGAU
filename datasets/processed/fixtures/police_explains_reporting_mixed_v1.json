@@ -1,0 +1,51 @@
+{
+  "call_id": "police_explains_reporting_mixed_v1",
+  "call_direction": "inbound",
+  "family": "police_explains_reporting",
+  "family_label": "Police officer explains how to report a scam",
+  "language_mode": "mixed",
+  "asr_noisy": false,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "VICTIM",
+      "start": 1.2,
+      "end": 7.0,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе, маған мошенники қоңырау соқты, банк деп таныстырды. Что делать?",
+      "confidence": 0.99
+    },
+    {
+      "speaker": "CALLER",
+      "start": 8.6,
+      "end": 15.7,
+      "language": "ru",
+      "text": "Это участковый инспектор полиции. Если денег не перевели, ущерба нет, но заявление подать стоит.",
+      "confidence": 0.94
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 17.8,
+      "end": 20.2,
+      "language": "mixed",
+      "text": "Қайда хабарласу керек?",
+      "confidence": 0.98
+    },
+    {
+      "speaker": "CALLER",
+      "start": 21.8,
+      "end": 29.1,
+      "language": "ru",
+      "text": "Заявление можно подать в отделении полиции или через eGov, приложите скриншоты и номер звонившего.",
+      "confidence": 0.98
+    },
+    {
+      "speaker": "CALLER",
+      "start": 30.2,
+      "end": 37.1,
+      "language": "mixed",
+      "text": "Есте сақтаңыз: СМС-кодты ешқашан айтпаңыз және телефон арқылы өтініш бойынша ақша аудармаңыз.",
+      "confidence": 0.94
+    }
+  ]
+}

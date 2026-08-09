@@ -1,0 +1,51 @@
+{
+  "call_id": "investment_platform_kyc_kk_v1",
+  "call_direction": "inbound",
+  "family": "investment_platform_kyc",
+  "family_label": "Licensed broker completes KYC without asking for a transfer (held out)",
+  "language_mode": "kk",
+  "asr_noisy": false,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "VICTIM",
+      "start": 1.2,
+      "end": 6.1,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе, брокерлік шот ашқанмын, статусын нақтылағым келеді.",
+      "confidence": 0.93
+    },
+    {
+      "speaker": "CALLER",
+      "start": 7.6,
+      "end": 12.3,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе, шот ашылды, қолданбада жеке тұлғаны растау қалды.",
+      "confidence": 0.93
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 13.2,
+      "end": 15.6,
+      "language": "mixed",
+      "text": "Ақшаны қайда салу керек?",
+      "confidence": 0.96
+    },
+    {
+      "speaker": "CALLER",
+      "start": 17.4,
+      "end": 24.8,
+      "language": "mixed",
+      "text": "Тек өзіңіздің жеке кабинетіңіз арқылы, деректемелер сол жерде. Телефон арқылы аударым рәсімдемейміз.",
+      "confidence": 0.93
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 25.8,
+      "end": 28.2,
+      "language": "kk",
+      "text": "Түсінікті, рахмет.",
+      "confidence": 0.96
+    }
+  ]
+}

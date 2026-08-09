@@ -1,0 +1,59 @@
+{
+  "call_id": "inbound_card_freeze_kk_v1",
+  "call_direction": "inbound",
+  "family": "inbound_card_freeze",
+  "family_label": "Customer asks how to freeze a card",
+  "language_mode": "kk",
+  "asr_noisy": false,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "VICTIM",
+      "start": 1.2,
+      "end": 6.8,
+      "language": "mixed",
+      "text": "Айтып жіберіңізші, картаны қалай бұғаттауға болады, мен оны жоғалтып алдым.",
+      "confidence": 0.93
+    },
+    {
+      "speaker": "CALLER",
+      "start": 7.5,
+      "end": 15.6,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе, әрине. Картаны қолданбада қауіпсіздік бөлімінде немесе осы жерде телефонмен бұғаттауға болады.",
+      "confidence": 0.98
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 17.4,
+      "end": 20.3,
+      "language": "mixed",
+      "text": "Телефонмен жасайық, қолданба ашылмайды.",
+      "confidence": 0.92
+    },
+    {
+      "speaker": "CALLER",
+      "start": 21.2,
+      "end": 24.4,
+      "language": "mixed",
+      "text": "Жарайды. Шот бойынша кодтық сөзді растаңыз.",
+      "confidence": 0.96
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 26.2,
+      "end": 28.6,
+      "language": "kk",
+      "text": "Қызғалдақ.",
+      "confidence": 0.96
+    },
+    {
+      "speaker": "CALLER",
+      "start": 30.2,
+      "end": 35.6,
+      "language": "kk",
+      "text": "Карта бұғатталды. Қайта шығаруды бөлімшеде немесе қолданбада рәсімдейсіз.",
+      "confidence": 0.98
+    }
+  ]
+}

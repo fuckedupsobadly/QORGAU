@@ -1,0 +1,59 @@
+{
+  "call_id": "fake_support_remote_access_ru_v0",
+  "call_direction": "outbound",
+  "family": "fake_support_remote_access",
+  "family_label": "Fake technical support → remote access",
+  "language_mode": "ru",
+  "asr_noisy": false,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 5.1,
+      "language": "ru",
+      "text": "Здравствуйте, техподдержка Kaspi, специалист Данияр.",
+      "confidence": 0.9
+    },
+    {
+      "speaker": "CALLER",
+      "start": 6.3,
+      "end": 12.5,
+      "language": "ru",
+      "text": "В вашем приложении обнаружена подозрительная операция и сбой в системе безопасности.",
+      "confidence": 0.92
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 13.4,
+      "end": 15.8,
+      "language": "ru",
+      "text": "И что теперь делать?",
+      "confidence": 0.89
+    },
+    {
+      "speaker": "CALLER",
+      "start": 17.4,
+      "end": 24.0,
+      "language": "ru",
+      "text": "Установите приложение AnyDesk по ссылке, которую я отправлю, я подключусь и всё исправлю.",
+      "confidence": 0.88
+    },
+    {
+      "speaker": "CALLER",
+      "start": 24.7,
+      "end": 30.6,
+      "language": "mixed",
+      "text": "Включите демонстрацию экрана и откройте банковское приложение, я проверю баланс.",
+      "confidence": 0.93
+    },
+    {
+      "speaker": "CALLER",
+      "start": 32.2,
+      "end": 37.2,
+      "language": "mixed",
+      "text": "Сейчас придёт push-код, назовите его, иначе доступ не восстановится.",
+      "confidence": 0.9
+    }
+  ]
+}

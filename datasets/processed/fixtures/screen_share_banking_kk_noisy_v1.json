@@ -1,0 +1,51 @@
+{
+  "call_id": "screen_share_banking_kk_noisy_v1",
+  "call_direction": "outbound",
+  "family": "screen_share_banking",
+  "family_label": "'Compliance check' → screen sharing during a banking session",
+  "language_mode": "kk",
+  "asr_noisy": true,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 5.7,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе, ForteBank антифрод мониторингі, маман Гүлнара.",
+      "confidence": 0.54
+    },
+    {
+      "speaker": "CALLER",
+      "start": 6.5,
+      "end": 11.4,
+      "language": "mixed",
+      "text": "сіздің картаңыз бойынша басқа елде рұқсат етілмеген операция өтті.",
+      "confidence": 0.62
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 13.4,
+      "end": 15.8,
+      "language": "mixed",
+      "text": "Мен шетелде болмадым",
+      "confidence": 0.55
+    },
+    {
+      "speaker": "CALLER",
+      "start": 17.0,
+      "end": 23.4,
+      "language": "mixed",
+      "text": "Мессенджерде экранды бөлісіңіз және банк қолданбасын ашыңыз қайдан болдырмауды көрсетем",
+      "confidence": 0.46
+    },
+    {
+      "speaker": "CALLER",
+      "start": 24.7,
+      "end": 30.0,
+      "language": "mixed",
+      "text": "push-тегі кодты мен көріп отырғанда енгізіңіз ну тек көрсетуді жаппаңыз",
+      "confidence": 0.57
+    }
+  ]
+}

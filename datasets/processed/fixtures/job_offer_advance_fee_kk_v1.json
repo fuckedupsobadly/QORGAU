@@ -1,0 +1,59 @@
+{
+  "call_id": "job_offer_advance_fee_kk_v1",
+  "call_direction": "outbound",
+  "family": "job_offer_advance_fee",
+  "family_label": "Job offer → advance fee transfer",
+  "language_mode": "kk",
+  "asr_noisy": false,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 7.1,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе, мен персонал таңдау бөлімінен, қашықтан жұмыс вакансиясы бойынша.",
+      "confidence": 0.97
+    },
+    {
+      "speaker": "CALLER",
+      "start": 7.5,
+      "end": 12.2,
+      "language": "kk",
+      "text": "Айына төрт жүз мың теңгеден төлем, кестесі еркін, оқыту екі күн.",
+      "confidence": 0.89
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 14.3,
+      "end": 16.7,
+      "language": "kk",
+      "text": "Қызық. Менен не керек?",
+      "confidence": 0.9
+    },
+    {
+      "speaker": "CALLER",
+      "start": 18.1,
+      "end": 25.6,
+      "language": "kk",
+      "text": "Рәсімдеу үшін құжаттар пакетіне жиырма мың теңге депозит салыңыз, кейін алғашқы жалақымен қайтарамыз.",
+      "confidence": 0.94
+    },
+    {
+      "speaker": "CALLER",
+      "start": 26.3,
+      "end": 29.6,
+      "language": "kk",
+      "text": "Орынды кешке дейін ұстаймыз, қалаушылар көп.",
+      "confidence": 0.95
+    },
+    {
+      "speaker": "CALLER",
+      "start": 31.0,
+      "end": 34.3,
+      "language": "kk",
+      "text": "Жеке куәліктің екі жағының фотосын жіберіңіз.",
+      "confidence": 0.89
+    }
+  ]
+}

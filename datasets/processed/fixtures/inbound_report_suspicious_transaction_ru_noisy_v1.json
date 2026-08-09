@@ -1,0 +1,51 @@
+{
+  "call_id": "inbound_report_suspicious_transaction_ru_noisy_v1",
+  "call_direction": "inbound",
+  "family": "inbound_report_suspicious_transaction",
+  "family_label": "Customer reports a suspicious transaction",
+  "language_mode": "ru",
+  "asr_noisy": true,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "VICTIM",
+      "start": 1.2,
+      "end": 7.3,
+      "language": "ru",
+      "text": "Здравствуйте, у меня с ка... карты списали двадцать тысяч, я эту операцию не делал.",
+      "confidence": 0.71
+    },
+    {
+      "speaker": "CALLER",
+      "start": 9.1,
+      "end": 15.6,
+      "language": "ru",
+      "text": "здравствуйте, зафиксирую обращение. карту сейчас заблокируем, чтобы остановить списания.",
+      "confidence": 0.43
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 16.5,
+      "end": 20.1,
+      "language": "mixed",
+      "text": "Да заблокируйте пожалуйста Это мошенники какие-то",
+      "confidence": 0.55
+    },
+    {
+      "speaker": "CALLER",
+      "start": 22.3,
+      "end": 28.1,
+      "language": "ru",
+      "text": "карта заблокирована. оформим претензию, срок рассмотрения до тридцати эм дней.",
+      "confidence": 0.63
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 30.2,
+      "end": 32.6,
+      "language": "ru",
+      "text": "Хорошо спасибо",
+      "confidence": 0.44
+    }
+  ]
+}

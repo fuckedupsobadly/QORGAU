@@ -1,0 +1,51 @@
+{
+  "call_id": "genuine_courier_address_kk_v0",
+  "call_direction": "outbound",
+  "family": "genuine_courier_address",
+  "family_label": "Real courier confirming an address",
+  "language_mode": "kk",
+  "asr_noisy": false,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 7.5,
+      "language": "kk",
+      "text": "Сәлеметсіз бе, жеткізу қызметінің курьері, менде сіздің мекенжайыңызға сәлемдеме бар.",
+      "confidence": 0.99
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 8.9,
+      "end": 11.3,
+      "language": "mixed",
+      "text": "Иә, мен құлаққап тапсырыс бердім.",
+      "confidence": 0.96
+    },
+    {
+      "speaker": "CALLER",
+      "start": 13.1,
+      "end": 18.8,
+      "language": "mixed",
+      "text": "Кіреберіс екінші ме, домофон жұмыс істейді ме? Жиырма минуттан кейін боламын.",
+      "confidence": 0.98
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 20.1,
+      "end": 22.5,
+      "language": "kk",
+      "text": "Иә, жұмыс істейді, көтеріліңіз.",
+      "confidence": 0.93
+    },
+    {
+      "speaker": "CALLER",
+      "start": 24.6,
+      "end": 31.6,
+      "language": "mixed",
+      "text": "Төлем алу кезінде картамен немесе қолма-қол, растау кодын өз қолданбаңыздан өзіңіз көрсетесіз.",
+      "confidence": 0.93
+    }
+  ]
+}

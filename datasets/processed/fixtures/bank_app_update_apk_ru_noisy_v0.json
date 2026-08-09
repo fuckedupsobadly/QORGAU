@@ -1,0 +1,51 @@
+{
+  "call_id": "bank_app_update_apk_ru_noisy_v0",
+  "call_direction": "outbound",
+  "family": "bank_app_update_apk",
+  "family_label": "'Mandatory app update' → malicious APK (held out)",
+  "language_mode": "ru",
+  "asr_noisy": true,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 7.1,
+      "language": "ru",
+      "text": "добрый день отдел безопасности jusan bank по обязательному обновлению приложения",
+      "confidence": 0.59
+    },
+    {
+      "speaker": "CALLER",
+      "start": 8.6,
+      "end": 14.2,
+      "language": "ru",
+      "text": "Ваша версия приложения устарела, поэтому карта будет заблокирована сегодня.",
+      "confidence": 0.62
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 15.0,
+      "end": 17.4,
+      "language": "mixed",
+      "text": "у меня всё работает вроде.",
+      "confidence": 0.44
+    },
+    {
+      "speaker": "CALLER",
+      "start": 19.4,
+      "end": 25.5,
+      "language": "ru",
+      "text": "Я от... отправлю ссылку, загрузите apk файл и установите поверх старого приложения.",
+      "confidence": 0.54
+    },
+    {
+      "speaker": "CALLER",
+      "start": 27.0,
+      "end": 33.5,
+      "language": "ru",
+      "text": "После установки введите логин и пароль, потом назовите мне код из СМС для синхронизации.",
+      "confidence": 0.67
+    }
+  ]
+}

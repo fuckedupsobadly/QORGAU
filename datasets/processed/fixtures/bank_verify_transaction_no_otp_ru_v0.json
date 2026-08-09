@@ -1,0 +1,51 @@
+{
+  "call_id": "bank_verify_transaction_no_otp_ru_v0",
+  "call_direction": "outbound",
+  "family": "bank_verify_transaction_no_otp",
+  "family_label": "Bank verifies a real transaction and refuses to take an OTP",
+  "language_mode": "ru",
+  "asr_noisy": false,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 8.6,
+      "language": "ru",
+      "text": "Здравствуйте, служба мониторинга Jusan Bank. Вы совершали покупку на сто двадцать тысяч в интернете?",
+      "confidence": 0.94
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 9.5,
+      "end": 11.9,
+      "language": "mixed",
+      "text": "Да, это я, покупал билеты.",
+      "confidence": 0.97
+    },
+    {
+      "speaker": "CALLER",
+      "start": 13.7,
+      "end": 20.1,
+      "language": "ru",
+      "text": "Спасибо, операцию подтверждаем, ограничения снимаем. Код из СМС мне называть не нужно.",
+      "confidence": 0.97
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 21.1,
+      "end": 23.5,
+      "language": "ru",
+      "text": "А как я могу вам верить?",
+      "confidence": 0.95
+    },
+    {
+      "speaker": "CALLER",
+      "start": 24.3,
+      "end": 30.6,
+      "language": "ru",
+      "text": "Правильный вопрос. Положите трубку и перезвоните по номеру на обратной стороне карты.",
+      "confidence": 0.98
+    }
+  ]
+}

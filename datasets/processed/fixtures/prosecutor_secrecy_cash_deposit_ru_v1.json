@@ -1,0 +1,59 @@
+{
+  "call_id": "prosecutor_secrecy_cash_deposit_ru_v1",
+  "call_direction": "outbound",
+  "family": "prosecutor_secrecy_cash_deposit",
+  "family_label": "Prosecutor's office → secret cash deposit (held out)",
+  "language_mode": "ru",
+  "asr_noisy": false,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 5.8,
+      "language": "ru",
+      "text": "Здравствуйте, помощник прокурора района, дело по вашему счёту.",
+      "confidence": 0.99
+    },
+    {
+      "speaker": "CALLER",
+      "start": 6.7,
+      "end": 13.4,
+      "language": "ru",
+      "text": "Ваш счёт использовали для обналичивания, есть задолженность и исполнительное производство.",
+      "confidence": 0.98
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 14.8,
+      "end": 17.2,
+      "language": "ru",
+      "text": "Это какая-то ошибка.",
+      "confidence": 0.94
+    },
+    {
+      "speaker": "CALLER",
+      "start": 18.5,
+      "end": 23.1,
+      "language": "ru",
+      "text": "Без подтверждения средств будет арест счетов и повестка в суд.",
+      "confidence": 0.91
+    },
+    {
+      "speaker": "CALLER",
+      "start": 24.4,
+      "end": 30.8,
+      "language": "ru",
+      "text": "Снимите наличные и внесите на специальный счёт через терминал, реквизиты сейчас пришлю.",
+      "confidence": 0.91
+    },
+    {
+      "speaker": "CALLER",
+      "start": 31.3,
+      "end": 37.4,
+      "language": "mixed",
+      "text": "Разговор конфиденциальный, никому не сообщайте, иначе будет статья за разглашение.",
+      "confidence": 0.93
+    }
+  ]
+}

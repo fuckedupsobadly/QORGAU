@@ -1,0 +1,75 @@
+{
+  "call_id": "account_compromise_safe_account_ru_v0",
+  "call_direction": "outbound",
+  "family": "account_compromise_safe_account",
+  "family_label": "Compromised account → transfer to a 'safe account'",
+  "language_mode": "ru",
+  "asr_noisy": false,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 6.9,
+      "language": "ru",
+      "text": "Добрый день, вас беспокоит отдел финансового мониторинга Национального Банка.",
+      "confidence": 0.94
+    },
+    {
+      "speaker": "CALLER",
+      "start": 8.6,
+      "end": 14.2,
+      "language": "ru",
+      "text": "К вашему счёту получили доступ третьи лица, зафиксирована попытка списания.",
+      "confidence": 0.96
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 15.1,
+      "end": 17.5,
+      "language": "ru",
+      "text": "Как это возможно?",
+      "confidence": 0.98
+    },
+    {
+      "speaker": "CALLER",
+      "start": 19.7,
+      "end": 24.9,
+      "language": "ru",
+      "text": "Ваши деньги в опасности, счёт будет заблокирован вместе со средствами.",
+      "confidence": 0.92
+    },
+    {
+      "speaker": "CALLER",
+      "start": 26.2,
+      "end": 32.8,
+      "language": "ru",
+      "text": "Единственный способ сохранить средства — перевести их на защищённый резервный счёт банка.",
+      "confidence": 0.95
+    },
+    {
+      "speaker": "CALLER",
+      "start": 33.3,
+      "end": 39.3,
+      "language": "ru",
+      "text": "Подойдите к банкомату и внесите всю сумму по номеру, который я продиктую. Срочно.",
+      "confidence": 0.93
+    },
+    {
+      "speaker": "CALLER",
+      "start": 40.5,
+      "end": 45.6,
+      "language": "mixed",
+      "text": "Сотрудникам отделения не сообщайте цель операции, это тайна проверки.",
+      "confidence": 0.88
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 46.1,
+      "end": 48.5,
+      "language": "ru",
+      "text": "Хорошо, сейчас поеду.",
+      "confidence": 0.89
+    }
+  ]
+}

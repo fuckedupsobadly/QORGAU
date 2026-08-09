@@ -1,0 +1,59 @@
+{
+  "call_id": "inbound_failed_payment_kk_v1",
+  "call_direction": "inbound",
+  "family": "inbound_failed_payment",
+  "family_label": "Customer calls the bank about a declined payment",
+  "language_mode": "kk",
+  "asr_noisy": false,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "VICTIM",
+      "start": 1.2,
+      "end": 6.2,
+      "language": "kk",
+      "text": "Сәлеметсіз бе, дүкенде картамен төлем неге өтпегенін білгім келеді.",
+      "confidence": 0.89
+    },
+    {
+      "speaker": "CALLER",
+      "start": 8.0,
+      "end": 15.5,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе, бұл Halyk Bank, оператор Мадина. Сәйкестендіру үшін картаның соңғы төрт санын айтыңыз.",
+      "confidence": 0.9
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 16.9,
+      "end": 19.3,
+      "language": "kk",
+      "text": "Төрт, сегіз, екі, бір.",
+      "confidence": 0.91
+    },
+    {
+      "speaker": "CALLER",
+      "start": 20.0,
+      "end": 28.0,
+      "language": "mixed",
+      "text": "Интернет-операциялар лимиті бойынша қабылданбауды көріп отырмын. Лимитті қолданбада өзіңіз өзгертуге болады.",
+      "confidence": 0.94
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 28.9,
+      "end": 31.3,
+      "language": "kk",
+      "text": "Түсінікті, көп рахмет.",
+      "confidence": 0.97
+    },
+    {
+      "speaker": "CALLER",
+      "start": 31.9,
+      "end": 36.8,
+      "language": "mixed",
+      "text": "Оқасы жоқ. СМС-кодты біз ешқашан сұрамаймыз, оны ешкімге айтпаңыз.",
+      "confidence": 0.96
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "call_id": "investment_crypto_profit_kk_noisy_v0",
+  "call_direction": "outbound",
+  "family": "investment_crypto_profit",
+  "family_label": "Investment platform → crypto deposit",
+  "language_mode": "kk",
+  "asr_noisy": true,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 7.1,
+      "language": "mixed",
+      "text": "Қайырлы күн, мен инвестициялық плтформаның жеке брокерімін, менің атым Алексей.",
+      "confidence": 0.66
+    },
+    {
+      "speaker": "CALLER",
+      "start": 9.3,
+      "end": 14.9,
+      "language": "mixed",
+      "text": "Клиенттеріміз айына он екі пайыз кепілдендірілген табыс алады тәуекел жо жоқ",
+      "confidence": 0.42
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 15.5,
+      "end": 18.7,
+      "language": "kk",
+      "text": "Тым жақсы естледі. Бұл қалай жұмыс істейді?",
+      "confidence": 0.52
+    },
+    {
+      "speaker": "CALLER",
+      "start": 19.6,
+      "end": 26.6,
+      "language": "mixed",
+      "text": "Айырбастау пункті арқылы эм сауда шотын USDT-мен толтырыңыз, ең аз депозит бес ммм жүз доллар.",
+      "confidence": 0.67
+    },
+    {
+      "speaker": "CALLER",
+      "start": 27.8,
+      "end": 31.5,
+      "language": "mixed",
+      "text": "Акция бүгін бітеді кейін кіру бес мыңнан басталады",
+      "confidence": 0.42
+    },
+    {
+      "speaker": "CALLER",
+      "start": 33.3,
+      "end": 39.3,
+      "language": "mixed",
+      "text": "сі сілтеме бойынша қолданбамызды орнатыңыз мен шотты қашықтан реттеуге көмектесем",
+      "confidence": 0.43
+    }
+  ]
+}

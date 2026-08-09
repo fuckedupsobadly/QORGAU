@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.DS_Store
+.pytest_cache/
+.ruff_cache/
+
+# generated artifacts — rebuild with `python -m training.prepare_dataset`
+artifacts/storage/
+artifacts/adapters/
+*.db
+*.sqlite3
+
+# keep the corpus + reports in git so results are reproducible without a GPU:
+# datasets/ and artifacts/reports/ are intentionally NOT ignored
+
+# corpus.jsonl is the concatenation of the three splits — redundant in git.
+# Rebuild everything with `python -m training.prepare_dataset`.
+datasets/processed/corpus.jsonl
+# per-slice test files are derived from datasets/test/dataset.jsonl
+datasets/test/slice_*.jsonl

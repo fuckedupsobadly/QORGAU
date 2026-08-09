@@ -1,0 +1,59 @@
+{
+  "call_id": "outbound_loan_followup_kk_noisy_v0",
+  "call_direction": "outbound",
+  "family": "outbound_loan_followup",
+  "family_label": "Bank follows up on a loan application the customer submitted",
+  "language_mode": "kk",
+  "asr_noisy": true,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 8.0,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе сейсенбіде берген несие өтініміңіз бойынша ForteBank-тен қоңырау соғып отырмын",
+      "confidence": 0.5
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 9.9,
+      "end": 12.3,
+      "language": "kk",
+      "text": "Иә, мен өтінім бердім.",
+      "confidence": 0.72
+    },
+    {
+      "speaker": "CALLER",
+      "start": 13.1,
+      "end": 18.4,
+      "language": "mixed",
+      "text": "Өтінім жиырма ну бір пайызбен екі миллион теңгеге алдын ала мақұлданды.",
+      "confidence": 0.62
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 19.3,
+      "end": 21.7,
+      "language": "mixed",
+      "text": "Шартқа қалай қол қоюға болады?",
+      "confidence": 0.57
+    },
+    {
+      "speaker": "CALLER",
+      "start": 22.7,
+      "end": 28.8,
+      "language": "mixed",
+      "text": "Мобильді қолданбада немесе әм жеке куәлікпен кез келгн бөлімшеде қол қоюға болады.",
+      "confidence": 0.73
+    },
+    {
+      "speaker": "CALLER",
+      "start": 30.3,
+      "end": 33.2,
+      "language": "mixed",
+      "text": "телефон арқылы ешқандай код сұрамаймыз.",
+      "confidence": 0.7
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "call_id": "bank_security_education_ru_v1",
+  "call_direction": "outbound",
+  "family": "bank_security_education",
+  "family_label": "Bank calls to warn the customer never to share an OTP",
+  "language_mode": "ru",
+  "asr_noisy": false,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 7.5,
+      "language": "ru",
+      "text": "Здравствуйте, это Kaspi, информационная рассылка о безопасности, звонок без запросов.",
+      "confidence": 0.99
+    },
+    {
+      "speaker": "CALLER",
+      "start": 7.9,
+      "end": 13.6,
+      "language": "ru",
+      "text": "Напоминаем: сотрудник банка никогда не спрашивает код из СМС, пароль или CVV.",
+      "confidence": 0.93
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 14.9,
+      "end": 17.3,
+      "language": "mixed",
+      "text": "Да, я знаю, спасибо.",
+      "confidence": 0.95
+    },
+    {
+      "speaker": "CALLER",
+      "start": 19.2,
+      "end": 26.2,
+      "language": "ru",
+      "text": "Если вам звонят и просят перевести деньги на безопасный счёт — это мошенники, положите трубку.",
+      "confidence": 0.99
+    },
+    {
+      "speaker": "CALLER",
+      "start": 28.0,
+      "end": 34.1,
+      "language": "ru",
+      "text": "Проверить любую информацию можно по номеру на обратной стороне карты. Хорошего дня.",
+      "confidence": 0.98
+    }
+  ]
+}

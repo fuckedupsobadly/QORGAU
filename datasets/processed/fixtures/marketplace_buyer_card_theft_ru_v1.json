@@ -1,0 +1,67 @@
+{
+  "call_id": "marketplace_buyer_card_theft_ru_v1",
+  "call_direction": "outbound",
+  "family": "marketplace_buyer_card_theft",
+  "family_label": "Marketplace 'buyer' → card data theft",
+  "language_mode": "ru",
+  "asr_noisy": false,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 6.3,
+      "language": "ru",
+      "text": "Здравствуйте, я по объявлению на OLX, беру ваш диван, всё устраивает.",
+      "confidence": 0.95
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 7.5,
+      "end": 9.9,
+      "language": "mixed",
+      "text": "Отлично, когда заберёте?",
+      "confidence": 0.94
+    },
+    {
+      "speaker": "CALLER",
+      "start": 10.4,
+      "end": 15.8,
+      "language": "ru",
+      "text": "Я оплачу через доставку Kaspi прямо сейчас, оператор уже оформил перевод.",
+      "confidence": 0.99
+    },
+    {
+      "speaker": "CALLER",
+      "start": 17.4,
+      "end": 24.2,
+      "language": "ru",
+      "text": "Чтобы деньги зашли, продиктуйте номер карты полностью, срок действия и три цифры на обороте.",
+      "confidence": 0.9
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 25.7,
+      "end": 28.1,
+      "language": "ru",
+      "text": "А зачем CVV для получения денег?",
+      "confidence": 0.9
+    },
+    {
+      "speaker": "CALLER",
+      "start": 29.7,
+      "end": 37.3,
+      "language": "ru",
+      "text": "Так работает система, иначе перевод отменится и вы потеряете покупателя. Быстрее, у меня мало времени.",
+      "confidence": 0.98
+    },
+    {
+      "speaker": "CALLER",
+      "start": 38.0,
+      "end": 42.1,
+      "language": "ru",
+      "text": "И код из СМС тоже назовите, он подтверждает зачисление.",
+      "confidence": 0.96
+    }
+  ]
+}

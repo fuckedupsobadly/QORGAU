@@ -1,0 +1,51 @@
+{
+  "call_id": "bank_security_education_kk_noisy_v0",
+  "call_direction": "outbound",
+  "family": "bank_security_education",
+  "family_label": "Bank calls to warn the customer never to share an OTP",
+  "language_mode": "kk",
+  "asr_noisy": true,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 7.6,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе, бұл Kaspi, қауіпсіздік туралы ақпараттық хабарлама, сұраныссыз қоңырау.",
+      "confidence": 0.54
+    },
+    {
+      "speaker": "CALLER",
+      "start": 8.3,
+      "end": 14.6,
+      "language": "mixed",
+      "text": "Еске саламыз: банк қызметкері ешқашан СМС-кодты, құпия сөзді немесе CVV-ді сұрамайды.",
+      "confidence": 0.74
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 15.6,
+      "end": 18.0,
+      "language": "kk",
+      "text": "Иә, білемін, рахмет.",
+      "confidence": 0.54
+    },
+    {
+      "speaker": "CALLER",
+      "start": 19.9,
+      "end": 27.2,
+      "language": "mixed",
+      "text": "Егер сізге қоңырау соғып ақшаны қауіпсіз шотқа аударуды сұраса — бұл алаяқтар те телефонды қойыңыз",
+      "confidence": 0.53
+    },
+    {
+      "speaker": "CALLER",
+      "start": 29.4,
+      "end": 37.0,
+      "language": "mixed",
+      "text": "кез келген ақпаратты картаның артқы жағындағы нөмір ээ бойынша тексруге болады. күніңіз эм жақсы өтсін.",
+      "confidence": 0.54
+    }
+  ]
+}

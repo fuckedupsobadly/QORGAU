@@ -1,0 +1,59 @@
+{
+  "call_id": "delivery_courier_otp_ru_noisy_v0",
+  "call_direction": "outbound",
+  "family": "delivery_courier_otp",
+  "family_label": "Courier confirming delivery → OTP theft",
+  "language_mode": "ru",
+  "asr_noisy": true,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 6.0,
+      "language": "ru",
+      "text": "здравствуйте служба доставки әм курьер санжар у меня ваша посылка",
+      "confidence": 0.6
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 6.7,
+      "end": 9.1,
+      "language": "mixed",
+      "text": "Я ничего не заказывал вроде.",
+      "confidence": 0.7
+    },
+    {
+      "speaker": "CALLER",
+      "start": 10.9,
+      "end": 17.3,
+      "language": "ru",
+      "text": "Заказ оформлен на ваш номер если не подтвердить посылка уйдёт обратно и спишется оплата",
+      "confidence": 0.65
+    },
+    {
+      "speaker": "CALLER",
+      "start": 18.3,
+      "end": 23.6,
+      "language": "ru",
+      "text": "Сейчас вам придёт код подтверждения назовите его мне и я закрою доставку",
+      "confidence": 0.6
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 24.3,
+      "end": 26.7,
+      "language": "ru",
+      "text": "Секунду",
+      "confidence": 0.45
+    },
+    {
+      "speaker": "CALLER",
+      "start": 28.3,
+      "end": 31.6,
+      "language": "ru",
+      "text": "Только быстрее, у меня ещё двадцать адресов.",
+      "confidence": 0.5
+    }
+  ]
+}

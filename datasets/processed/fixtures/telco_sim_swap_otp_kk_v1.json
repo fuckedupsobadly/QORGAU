@@ -1,0 +1,51 @@
+{
+  "call_id": "telco_sim_swap_otp_kk_v1",
+  "call_direction": "outbound",
+  "family": "telco_sim_swap_otp",
+  "family_label": "Mobile operator 'SIM renewal' → OTP interception",
+  "language_mode": "kk",
+  "asr_noisy": false,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 5.9,
+      "language": "kk",
+      "text": "Сәлеметсіз бе, Beeline операторы, нөмірлер қауіпсіздігі бөлімі.",
+      "confidence": 0.9
+    },
+    {
+      "speaker": "CALLER",
+      "start": 7.4,
+      "end": 12.3,
+      "language": "kk",
+      "text": "Сіздің сим-картаңызға үшінші тұлғадан қайта шығаруға өтінім түсті.",
+      "confidence": 0.97
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 13.4,
+      "end": 15.8,
+      "language": "mixed",
+      "text": "Мен ондай өтінім бермедім!",
+      "confidence": 0.98
+    },
+    {
+      "speaker": "CALLER",
+      "start": 16.8,
+      "end": 21.8,
+      "language": "kk",
+      "text": "Қазір болдырмасаңыз, нөмір банкке рұқсатпен бірге алаяқтарға кетеді.",
+      "confidence": 0.93
+    },
+    {
+      "speaker": "CALLER",
+      "start": 23.5,
+      "end": 28.5,
+      "language": "mixed",
+      "text": "Қазір келетін СМС-тегі кодты айтыңыз, бұл қайта шығаруды болдырмау.",
+      "confidence": 0.93
+    }
+  ]
+}

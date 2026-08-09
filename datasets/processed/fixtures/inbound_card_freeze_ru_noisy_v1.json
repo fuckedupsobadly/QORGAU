@@ -1,0 +1,59 @@
+{
+  "call_id": "inbound_card_freeze_ru_noisy_v1",
+  "call_direction": "inbound",
+  "family": "inbound_card_freeze",
+  "family_label": "Customer asks how to freeze a card",
+  "language_mode": "ru",
+  "asr_noisy": true,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "VICTIM",
+      "start": 1.2,
+      "end": 5.7,
+      "language": "ru",
+      "text": "Подскажите пожалуйста, как заблокировать карту, я потерял её.",
+      "confidence": 0.71
+    },
+    {
+      "speaker": "CALLER",
+      "start": 6.7,
+      "end": 14.3,
+      "language": "ru",
+      "text": "Здравствуйте конечно Карту можно заблкировать в приложении в разделе безопасность или здесь по телефону",
+      "confidence": 0.44
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 15.8,
+      "end": 19.4,
+      "language": "mixed",
+      "text": "ну Давайте по телефону приложение не открывается",
+      "confidence": 0.54
+    },
+    {
+      "speaker": "CALLER",
+      "start": 21.5,
+      "end": 25.9,
+      "language": "ru",
+      "text": "эм Хорошо Подтвердите кодовое слово по счёту ммм пожалуйста",
+      "confidence": 0.46
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 26.9,
+      "end": 29.3,
+      "language": "ru",
+      "text": "Тюльпан.",
+      "confidence": 0.63
+    },
+    {
+      "speaker": "CALLER",
+      "start": 30.2,
+      "end": 35.2,
+      "language": "mixed",
+      "text": "Карта заблокирована Перевыпуск оформите в отделении или в приложении",
+      "confidence": 0.48
+    }
+  ]
+}

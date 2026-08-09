@@ -1,0 +1,75 @@
+{
+  "call_id": "account_compromise_safe_account_mixed_v0",
+  "call_direction": "outbound",
+  "family": "account_compromise_safe_account",
+  "family_label": "Compromised account → transfer to a 'safe account'",
+  "language_mode": "mixed",
+  "asr_noisy": false,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 6.5,
+      "language": "mixed",
+      "text": "Қайырлы күн, вас беспокоит Ұлттық Банктің финансовый мониторинг бөлімі.",
+      "confidence": 0.89
+    },
+    {
+      "speaker": "CALLER",
+      "start": 7.9,
+      "end": 13.5,
+      "language": "ru",
+      "text": "К вашему счёту получили доступ третьи лица, зафиксирована попытка списания.",
+      "confidence": 0.92
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 15.1,
+      "end": 17.5,
+      "language": "kk",
+      "text": "Бұл қалай болды?",
+      "confidence": 0.9
+    },
+    {
+      "speaker": "CALLER",
+      "start": 18.9,
+      "end": 24.1,
+      "language": "ru",
+      "text": "Ваши деньги в опасности, счёт будет заблокирован вместе со средствами.",
+      "confidence": 0.92
+    },
+    {
+      "speaker": "CALLER",
+      "start": 25.6,
+      "end": 30.1,
+      "language": "mixed",
+      "text": "Ақшаны сақтау үшін жалғыз жол — оны безопасный счётқа аудару.",
+      "confidence": 0.95
+    },
+    {
+      "speaker": "CALLER",
+      "start": 31.1,
+      "end": 37.1,
+      "language": "ru",
+      "text": "Подойдите к банкомату и внесите всю сумму по номеру, который я продиктую. Срочно.",
+      "confidence": 0.95
+    },
+    {
+      "speaker": "CALLER",
+      "start": 38.3,
+      "end": 43.9,
+      "language": "kk",
+      "text": "Бөлімше қызметкерлеріне операцияның мақсатын айтпаңыз, бұл тексеру құпиясы.",
+      "confidence": 0.97
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 44.7,
+      "end": 47.1,
+      "language": "ru",
+      "text": "Хорошо, сейчас поеду.",
+      "confidence": 0.9
+    }
+  ]
+}

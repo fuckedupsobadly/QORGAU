@@ -1,0 +1,101 @@
+{
+  "family_split": {
+    "bank_app_update_apk": "test",
+    "prosecutor_secrecy_cash_deposit": "test",
+    "police_investigator_money_mule": "train",
+    "job_offer_advance_fee": "train",
+    "delivery_courier_otp": "train",
+    "fake_refund_card": "train",
+    "marketplace_buyer_card_theft": "train",
+    "fake_support_remote_access": "train",
+    "telco_sim_swap_otp": "train",
+    "investment_crypto_profit": "train",
+    "screen_share_banking": "validation",
+    "bank_security_fake_loan_otp": "validation",
+    "egov_benefit_credential": "test",
+    "account_compromise_safe_account": "test",
+    "investment_platform_kyc": "test",
+    "inbound_report_suspicious_transaction": "train",
+    "bank_verify_transaction_no_otp": "train",
+    "genuine_courier_address": "train",
+    "inbound_card_freeze": "train",
+    "bank_security_education": "train",
+    "inbound_failed_payment": "train",
+    "telco_tariff_offer": "train",
+    "outbound_loan_followup": "validation",
+    "police_explains_reporting": "test"
+  },
+  "counts": {
+    "validation": 36,
+    "test": 72,
+    "train": 180
+  },
+  "slices": {
+    "validation": {
+      "asr_noisy": 18,
+      "kk": 12,
+      "legitimate": 12,
+      "mixed": 12,
+      "obvious": 24,
+      "ru": 12,
+      "scam": 24
+    },
+    "test": {
+      "asr_noisy": 36,
+      "kk": 24,
+      "legitimate": 24,
+      "mixed": 24,
+      "obvious": 24,
+      "ru": 24,
+      "scam": 48,
+      "subtle": 24,
+      "unseen_pattern": 36
+    },
+    "train": {
+      "asr_noisy": 90,
+      "kk": 60,
+      "legitimate": 84,
+      "mixed": 60,
+      "obvious": 36,
+      "ru": 60,
+      "scam": 96,
+      "subtle": 60
+    }
+  },
+  "families": {
+    "validation": [
+      "bank_security_fake_loan_otp",
+      "outbound_loan_followup",
+      "screen_share_banking"
+    ],
+    "test": [
+      "account_compromise_safe_account",
+      "bank_app_update_apk",
+      "egov_benefit_credential",
+      "investment_platform_kyc",
+      "police_explains_reporting",
+      "prosecutor_secrecy_cash_deposit"
+    ],
+    "train": [
+      "bank_security_education",
+      "bank_verify_transaction_no_otp",
+      "delivery_courier_otp",
+      "fake_refund_card",
+      "fake_support_remote_access",
+      "genuine_courier_address",
+      "inbound_card_freeze",
+      "inbound_failed_payment",
+      "inbound_report_suspicious_transaction",
+      "investment_crypto_profit",
+      "job_offer_advance_fee",
+      "marketplace_buyer_card_theft",
+      "police_investigator_money_mule",
+      "telco_sim_swap_otp",
+      "telco_tariff_offer"
+    ]
+  },
+  "leakage_check": {
+    "train_vs_validation_family_overlap": [],
+    "train_vs_test_family_overlap": []
+  }
+}

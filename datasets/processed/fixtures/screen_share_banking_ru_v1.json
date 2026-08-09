@@ -1,0 +1,51 @@
+{
+  "call_id": "screen_share_banking_ru_v1",
+  "call_direction": "outbound",
+  "family": "screen_share_banking",
+  "family_label": "'Compliance check' → screen sharing during a banking session",
+  "language_mode": "ru",
+  "asr_noisy": false,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 6.0,
+      "language": "ru",
+      "text": "Здравствуйте, антифрод-мониторинг ForteBank, специалист Гульнара.",
+      "confidence": 0.93
+    },
+    {
+      "speaker": "CALLER",
+      "start": 6.9,
+      "end": 11.9,
+      "language": "ru",
+      "text": "По вашей карте прошла несанкционированная операция в другой стране.",
+      "confidence": 0.9
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 13.5,
+      "end": 15.9,
+      "language": "mixed",
+      "text": "Я за границей не был.",
+      "confidence": 0.96
+    },
+    {
+      "speaker": "CALLER",
+      "start": 17.8,
+      "end": 24.1,
+      "language": "ru",
+      "text": "Поделитесь экраном в мессенджере и откройте приложение банка, я покажу, где отменить.",
+      "confidence": 0.99
+    },
+    {
+      "speaker": "CALLER",
+      "start": 25.4,
+      "end": 30.1,
+      "language": "mixed",
+      "text": "Введите код из push при мне, только не закрывайте демонстрацию.",
+      "confidence": 0.9
+    }
+  ]
+}

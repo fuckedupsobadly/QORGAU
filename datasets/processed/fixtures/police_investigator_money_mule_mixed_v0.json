@@ -1,0 +1,67 @@
+{
+  "call_id": "police_investigator_money_mule_mixed_v0",
+  "call_direction": "outbound",
+  "family": "police_investigator_money_mule",
+  "family_label": "Police / investigator → criminal case → money transfer",
+  "language_mode": "mixed",
+  "asr_noisy": false,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 7.1,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе, это старший следователь полиция департаментінің, капитан Ержанов.",
+      "confidence": 0.91
+    },
+    {
+      "speaker": "CALLER",
+      "start": 8.4,
+      "end": 14.4,
+      "language": "ru",
+      "text": "На ваши реквизиты возбуждено уголовное дело о финансировании мошеннической схемы.",
+      "confidence": 0.95
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 15.0,
+      "end": 17.8,
+      "language": "kk",
+      "text": "Түсінмедім, мен ештеңе жасаған жоқпын.",
+      "confidence": 0.9
+    },
+    {
+      "speaker": "CALLER",
+      "start": 18.8,
+      "end": 24.9,
+      "language": "mixed",
+      "text": "Если не подтвердите законность средств, вас привлекут к уголовной ответственности.",
+      "confidence": 0.93
+    },
+    {
+      "speaker": "CALLER",
+      "start": 26.5,
+      "end": 32.2,
+      "language": "kk",
+      "text": "Әңгіме тергеу құпиясы шеңберінде өтеді, туыстарыңызды қоса, ешкімге айтпаңыз.",
+      "confidence": 0.97
+    },
+    {
+      "speaker": "CALLER",
+      "start": 34.4,
+      "end": 39.7,
+      "language": "mixed",
+      "text": "Ақшаны тексеру үшін оны транзитный счётқа аударыңыз, я реквизиты берем.",
+      "confidence": 0.89
+    },
+    {
+      "speaker": "CALLER",
+      "start": 40.9,
+      "end": 47.0,
+      "language": "mixed",
+      "text": "Телефонды тастамаңыз және банкке қоңырау соқпаңыз, әйтпесе бұл жасыру деп саналады.",
+      "confidence": 0.96
+    }
+  ]
+}

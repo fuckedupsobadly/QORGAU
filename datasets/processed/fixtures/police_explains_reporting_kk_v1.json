@@ -1,0 +1,51 @@
+{
+  "call_id": "police_explains_reporting_kk_v1",
+  "call_direction": "inbound",
+  "family": "police_explains_reporting",
+  "family_label": "Police officer explains how to report a scam",
+  "language_mode": "kk",
+  "asr_noisy": false,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "VICTIM",
+      "start": 1.2,
+      "end": 7.2,
+      "language": "kk",
+      "text": "Сәлеметсіз бе, маған алаяқтар қоңырау соқты, банк деп таныстырды. Не істеу керек?",
+      "confidence": 0.89
+    },
+    {
+      "speaker": "CALLER",
+      "start": 8.4,
+      "end": 15.3,
+      "language": "mixed",
+      "text": "Бұл полиция участкелік инспекторы. Ақша аудармаған болсаңыз, зиян жоқ, бірақ арыз беру керек.",
+      "confidence": 0.96
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 15.9,
+      "end": 18.3,
+      "language": "mixed",
+      "text": "Қайда хабарласу керек?",
+      "confidence": 0.99
+    },
+    {
+      "speaker": "CALLER",
+      "start": 18.8,
+      "end": 26.9,
+      "language": "mixed",
+      "text": "Арызды полиция бөлімшесінде немесе eGov арқылы беруге болады, скриншоттар мен қоңырау шалған нөмірді қосыңыз.",
+      "confidence": 0.97
+    },
+    {
+      "speaker": "CALLER",
+      "start": 29.0,
+      "end": 35.9,
+      "language": "mixed",
+      "text": "Есте сақтаңыз: СМС-кодты ешқашан айтпаңыз және телефон арқылы өтініш бойынша ақша аудармаңыз.",
+      "confidence": 0.98
+    }
+  ]
+}

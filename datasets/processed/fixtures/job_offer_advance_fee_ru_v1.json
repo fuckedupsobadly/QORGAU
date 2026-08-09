@@ -1,0 +1,59 @@
+{
+  "call_id": "job_offer_advance_fee_ru_v1",
+  "call_direction": "outbound",
+  "family": "job_offer_advance_fee",
+  "family_label": "Job offer → advance fee transfer",
+  "language_mode": "ru",
+  "asr_noisy": false,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 7.3,
+      "language": "ru",
+      "text": "Здравствуйте, я из отдела подбора персонала, по вашей вакансии на удалённую работу.",
+      "confidence": 0.93
+    },
+    {
+      "speaker": "CALLER",
+      "start": 8.8,
+      "end": 14.5,
+      "language": "ru",
+      "text": "Оплата от четырёхсот тысяч тенге в месяц, график свободный, обучение два дня.",
+      "confidence": 0.89
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 16.4,
+      "end": 18.8,
+      "language": "ru",
+      "text": "Интересно. Что нужно от меня?",
+      "confidence": 0.97
+    },
+    {
+      "speaker": "CALLER",
+      "start": 21.0,
+      "end": 28.8,
+      "language": "ru",
+      "text": "Для оформления внесите депозит двадцать тысяч тенге за пакет документов, потом вернём с первой зарплатой.",
+      "confidence": 0.92
+    },
+    {
+      "speaker": "CALLER",
+      "start": 30.8,
+      "end": 33.7,
+      "language": "ru",
+      "text": "Место держим до вечера, желающих много.",
+      "confidence": 0.88
+    },
+    {
+      "speaker": "CALLER",
+      "start": 34.9,
+      "end": 38.8,
+      "language": "ru",
+      "text": "И пришлите фото удостоверения личности с двух сторон.",
+      "confidence": 0.89
+    }
+  ]
+}

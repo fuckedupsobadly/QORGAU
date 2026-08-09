@@ -1,0 +1,59 @@
+{
+  "call_id": "delivery_courier_otp_kk_v0",
+  "call_direction": "outbound",
+  "family": "delivery_courier_otp",
+  "family_label": "Courier confirming delivery → OTP theft",
+  "language_mode": "kk",
+  "asr_noisy": false,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 6.1,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе, жеткізу қызметі, курьер Санжар, сәлемдемеңіз менде.",
+      "confidence": 0.9
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 7.6,
+      "end": 10.0,
+      "language": "mixed",
+      "text": "Мен тапсырыс бермеген сияқтымын.",
+      "confidence": 0.9
+    },
+    {
+      "speaker": "CALLER",
+      "start": 11.3,
+      "end": 18.6,
+      "language": "kk",
+      "text": "Тапсырыс сіздің нөміріңізге рәсімделген, растамасаңыз, сәлемдеме қайтады және төлем есептен шығады.",
+      "confidence": 0.97
+    },
+    {
+      "speaker": "CALLER",
+      "start": 19.6,
+      "end": 25.0,
+      "language": "mixed",
+      "text": "Қазір сізге растау коды келеді, оны маған айтыңыз, мен жеткізуді жабамын.",
+      "confidence": 0.91
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 27.0,
+      "end": 29.4,
+      "language": "mixed",
+      "text": "Бір минут...",
+      "confidence": 0.93
+    },
+    {
+      "speaker": "CALLER",
+      "start": 31.4,
+      "end": 34.9,
+      "language": "mixed",
+      "text": "Тезірек болыңыз, менде әлі жиырма мекенжай бар.",
+      "confidence": 0.96
+    }
+  ]
+}

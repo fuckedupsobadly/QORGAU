@@ -1,0 +1,83 @@
+{
+  "call_id": "bank_security_fake_loan_otp_mixed_noisy_v1",
+  "call_direction": "outbound",
+  "family": "bank_security_fake_loan_otp",
+  "family_label": "Bank security → invented loan → OTP theft",
+  "language_mode": "mixed",
+  "asr_noisy": true,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 5.9,
+      "language": "mixed",
+      "text": "сәлеметсіз бе это служба безопасности halyk bank менің атым әсел",
+      "confidence": 0.48
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 7.6,
+      "end": 10.0,
+      "language": "mixed",
+      "text": "Да, слушаю вас.",
+      "confidence": 0.55
+    },
+    {
+      "speaker": "CALLER",
+      "start": 12.1,
+      "end": 16.8,
+      "language": "mixed",
+      "text": "Сіздің атыңызға кредит оформляется, 2 миллиона 800 тысяч тенге.",
+      "confidence": 0.61
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 18.0,
+      "end": 20.8,
+      "language": "ru",
+      "text": "но я ничего не оформлял. это ээ точно?",
+      "confidence": 0.42
+    },
+    {
+      "speaker": "CALLER",
+      "start": 21.9,
+      "end": 28.2,
+      "language": "mixed",
+      "text": "Сондықтан операцияны дереу тоқтату керек, әйтпесе он минут ішінде ақша есептен шығды.",
+      "confidence": 0.72
+    },
+    {
+      "speaker": "CALLER",
+      "start": 30.3,
+      "end": 35.3,
+      "language": "mixed",
+      "text": "не отключайтесь и никому не говорите об этом разговоре идёт проверка",
+      "confidence": 0.46
+    },
+    {
+      "speaker": "CALLER",
+      "start": 36.6,
+      "end": 40.6,
+      "language": "mixed",
+      "text": "Өтінімді отменить ету үшін жүйе сізге растау жібереді.",
+      "confidence": 0.66
+    },
+    {
+      "speaker": "CALLER",
+      "start": 42.1,
+      "end": 47.2,
+      "language": "mixed",
+      "text": "Сізге СМС келді ме? ммм Кодты айтып жіберіңіз, я сейчас отмену введу.",
+      "confidence": 0.7
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 49.2,
+      "end": 51.6,
+      "language": "kk",
+      "text": "Жарайды, қазір қараймын.",
+      "confidence": 0.63
+    }
+  ]
+}

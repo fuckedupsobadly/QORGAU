@@ -1,0 +1,75 @@
+{
+  "call_id": "account_compromise_safe_account_ru_noisy_v1",
+  "call_direction": "outbound",
+  "family": "account_compromise_safe_account",
+  "family_label": "Compromised account → transfer to a 'safe account'",
+  "language_mode": "ru",
+  "asr_noisy": true,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 7.3,
+      "language": "ru",
+      "text": "Добрый де... день, вас беспокоит отдел финансового мониторинга Национального Банка.",
+      "confidence": 0.55
+    },
+    {
+      "speaker": "CALLER",
+      "start": 8.2,
+      "end": 14.1,
+      "language": "ru",
+      "text": "ммм К вашему счёту по получили доступ третьи лица зафиксирована попытка списания",
+      "confidence": 0.44
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 14.9,
+      "end": 17.3,
+      "language": "ru",
+      "text": "Как это возможно?",
+      "confidence": 0.52
+    },
+    {
+      "speaker": "CALLER",
+      "start": 18.9,
+      "end": 24.1,
+      "language": "ru",
+      "text": "ваши деньги в опасности, счёт будет заблокирован вместе со средствами.",
+      "confidence": 0.66
+    },
+    {
+      "speaker": "CALLER",
+      "start": 25.7,
+      "end": 32.8,
+      "language": "ru",
+      "text": "Еднственный әм способ сохранить средства — перевести их на защищённый резрвный сч... счёт банка.",
+      "confidence": 0.43
+    },
+    {
+      "speaker": "CALLER",
+      "start": 34.4,
+      "end": 40.2,
+      "language": "ru",
+      "text": "подойдите к банкомату и внесите всю сумму по номеру который я продиктую срочно",
+      "confidence": 0.43
+    },
+    {
+      "speaker": "CALLER",
+      "start": 41.8,
+      "end": 46.9,
+      "language": "mixed",
+      "text": "Сотрдникам отделения не сообщайте цель операции это тайна пр проверки",
+      "confidence": 0.6
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 48.8,
+      "end": 51.2,
+      "language": "ru",
+      "text": "хорошо сейчас поеду",
+      "confidence": 0.7
+    }
+  ]
+}

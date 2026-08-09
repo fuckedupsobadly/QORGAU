@@ -1,0 +1,59 @@
+{
+  "call_id": "prosecutor_secrecy_cash_deposit_kk_v1",
+  "call_direction": "outbound",
+  "family": "prosecutor_secrecy_cash_deposit",
+  "family_label": "Prosecutor's office → secret cash deposit (held out)",
+  "language_mode": "kk",
+  "asr_noisy": false,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 5.9,
+      "language": "kk",
+      "text": "Сәлеметсіз бе, аудан прокурорының көмекшісі, шотыңыз бойынша іс.",
+      "confidence": 0.91
+    },
+    {
+      "speaker": "CALLER",
+      "start": 6.6,
+      "end": 12.3,
+      "language": "mixed",
+      "text": "Шотыңыз қолма-қол айналдыру үшін пайдаланылған, берешек және орындау ісі бар.",
+      "confidence": 0.91
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 14.3,
+      "end": 16.7,
+      "language": "kk",
+      "text": "Бұл қандай да бір қателік.",
+      "confidence": 0.98
+    },
+    {
+      "speaker": "CALLER",
+      "start": 17.4,
+      "end": 22.5,
+      "language": "mixed",
+      "text": "Қаражат расталмаса, шоттарға тыйым салынады және сотқа шақыру келеді.",
+      "confidence": 0.89
+    },
+    {
+      "speaker": "CALLER",
+      "start": 23.3,
+      "end": 30.0,
+      "language": "mixed",
+      "text": "Қолма-қол ақшаны алып, терминал арқылы арнайы шотқа салыңыз, деректемелерді қазір жіберем.",
+      "confidence": 0.98
+    },
+    {
+      "speaker": "CALLER",
+      "start": 31.8,
+      "end": 36.7,
+      "language": "mixed",
+      "text": "Әңгіме құпия, ешкімге айтпаңыз, әйтпесе жария ету үшін бап болады.",
+      "confidence": 0.89
+    }
+  ]
+}

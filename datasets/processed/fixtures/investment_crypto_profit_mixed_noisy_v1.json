@@ -1,0 +1,59 @@
+{
+  "call_id": "investment_crypto_profit_mixed_noisy_v1",
+  "call_direction": "outbound",
+  "family": "investment_crypto_profit",
+  "family_label": "Investment platform → crypto deposit",
+  "language_mode": "mixed",
+  "asr_noisy": true,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 6.8,
+      "language": "mixed",
+      "text": "Қайырлы күн, мен инвестиционный платформаның брокерімін, менің атым Алексей.",
+      "confidence": 0.72
+    },
+    {
+      "speaker": "CALLER",
+      "start": 7.8,
+      "end": 14.2,
+      "language": "ru",
+      "text": "Наши клиенты получают гарантированный ну доход двенадцать процентов в месяц, риска нет.",
+      "confidence": 0.63
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 15.5,
+      "end": 18.8,
+      "language": "kk",
+      "text": "тым жақсы естіледі. бұл қалай жұмыс істейді?",
+      "confidence": 0.42
+    },
+    {
+      "speaker": "CALLER",
+      "start": 20.8,
+      "end": 27.3,
+      "language": "mixed",
+      "text": "обменник арқылы торговый счётты usdt-мен толтырыңыз, минимальный депозит бес жүз доллар.",
+      "confidence": 0.69
+    },
+    {
+      "speaker": "CALLER",
+      "start": 28.6,
+      "end": 32.9,
+      "language": "mixed",
+      "text": "акция бүгін бітеді, кейін кіру бес мы... мыңнан басталады.",
+      "confidence": 0.55
+    },
+    {
+      "speaker": "CALLER",
+      "start": 34.9,
+      "end": 40.1,
+      "language": "mixed",
+      "text": "Установите наше приложение по сслке, я помогу настроить счёт удалённо.",
+      "confidence": 0.62
+    }
+  ]
+}

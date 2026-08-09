@@ -1,0 +1,51 @@
+{
+  "call_id": "bank_verify_transaction_no_otp_mixed_v0",
+  "call_direction": "outbound",
+  "family": "bank_verify_transaction_no_otp",
+  "family_label": "Bank verifies a real transaction and refuses to take an OTP",
+  "language_mode": "mixed",
+  "asr_noisy": false,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 8.5,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе, Jusan Bank мониторинг қызметі. Интернетте сто двадцать тысяч сатып алу жасадыңыз ба?",
+      "confidence": 0.92
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 9.4,
+      "end": 11.8,
+      "language": "mixed",
+      "text": "Да, это я, покупал билеты.",
+      "confidence": 0.97
+    },
+    {
+      "speaker": "CALLER",
+      "start": 13.6,
+      "end": 20.3,
+      "language": "mixed",
+      "text": "Рахмет, операцияны растаймыз, шектеулерді алып тастаймыз. СМС-кодты маған айту қажет емес.",
+      "confidence": 0.9
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 21.9,
+      "end": 24.3,
+      "language": "ru",
+      "text": "А как я могу вам верить?",
+      "confidence": 0.92
+    },
+    {
+      "speaker": "CALLER",
+      "start": 26.1,
+      "end": 32.4,
+      "language": "kk",
+      "text": "Дұрыс сұрақ. Телефонды қойып, картаның артқы жағындағы нөмірге қайта қоңырау соғыңыз.",
+      "confidence": 0.93
+    }
+  ]
+}

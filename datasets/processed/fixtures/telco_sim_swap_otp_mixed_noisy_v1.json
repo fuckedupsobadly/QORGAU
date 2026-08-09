@@ -1,0 +1,51 @@
+{
+  "call_id": "telco_sim_swap_otp_mixed_noisy_v1",
+  "call_direction": "outbound",
+  "family": "telco_sim_swap_otp",
+  "family_label": "Mobile operator 'SIM renewal' → OTP interception",
+  "language_mode": "mixed",
+  "asr_noisy": true,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 5.9,
+      "language": "kk",
+      "text": "Сәлеметсіз бе, Beeline эм оператор, нөмірлер қауіпсіздік бөлімі.",
+      "confidence": 0.51
+    },
+    {
+      "speaker": "CALLER",
+      "start": 6.7,
+      "end": 11.7,
+      "language": "ru",
+      "text": "На вашу сим-карту поступила ээ заявка на перевыпуск от третьего лица",
+      "confidence": 0.57
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 12.5,
+      "end": 14.9,
+      "language": "mixed",
+      "text": "ээ Мен ондай өтінім бермедім!",
+      "confidence": 0.66
+    },
+    {
+      "speaker": "CALLER",
+      "start": 15.7,
+      "end": 21.0,
+      "language": "ru",
+      "text": "если не отменить сейчас номер уйдёт мошенникам вместе с доступом к банк",
+      "confidence": 0.59
+    },
+    {
+      "speaker": "CALLER",
+      "start": 22.6,
+      "end": 26.9,
+      "language": "mixed",
+      "text": "ммм Қазір келетін СМС кодты айтыңыз это отмена перевыпуска",
+      "confidence": 0.47
+    }
+  ]
+}

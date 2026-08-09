@@ -1,0 +1,51 @@
+{
+  "call_id": "inbound_report_suspicious_transaction_kk_v1",
+  "call_direction": "inbound",
+  "family": "inbound_report_suspicious_transaction",
+  "family_label": "Customer reports a suspicious transaction",
+  "language_mode": "kk",
+  "asr_noisy": false,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "VICTIM",
+      "start": 1.2,
+      "end": 7.8,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе, картамнан жиырма мың теңге шығып кеткен, мен ол операцияны жасаған жоқпын.",
+      "confidence": 0.9
+    },
+    {
+      "speaker": "CALLER",
+      "start": 8.5,
+      "end": 14.8,
+      "language": "kk",
+      "text": "Сәлеметсіз бе, өтінішті тіркеймін. Шығындарды тоқтату үшін картаны қазір бұғаттаймыз.",
+      "confidence": 0.91
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 16.2,
+      "end": 19.4,
+      "language": "kk",
+      "text": "Иә, бұғаттаңыз. Бұл қандай да бір алаяқтар.",
+      "confidence": 0.97
+    },
+    {
+      "speaker": "CALLER",
+      "start": 20.8,
+      "end": 26.2,
+      "language": "mixed",
+      "text": "Карта бұғатталды. Талап-арыз рәсімдейміз, қарау мерзімі отыз күнге дейін.",
+      "confidence": 0.97
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 27.4,
+      "end": 29.8,
+      "language": "kk",
+      "text": "Жарайды, рахмет.",
+      "confidence": 0.97
+    }
+  ]
+}

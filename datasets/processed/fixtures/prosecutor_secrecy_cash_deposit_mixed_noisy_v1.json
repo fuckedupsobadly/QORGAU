@@ -1,0 +1,59 @@
+{
+  "call_id": "prosecutor_secrecy_cash_deposit_mixed_noisy_v1",
+  "call_direction": "outbound",
+  "family": "prosecutor_secrecy_cash_deposit",
+  "family_label": "Prosecutor's office → secret cash deposit (held out)",
+  "language_mode": "mixed",
+  "asr_noisy": true,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 5.2,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе, прокурор көмекшісі, шотыңыз бойынша іс.",
+      "confidence": 0.48
+    },
+    {
+      "speaker": "CALLER",
+      "start": 6.8,
+      "end": 13.3,
+      "language": "ru",
+      "text": "Ваш счёт использовали для обналичивания есть задолженность и исполнительное производство",
+      "confidence": 0.48
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 14.4,
+      "end": 16.8,
+      "language": "kk",
+      "text": "Бұл қандай да бір қателік.",
+      "confidence": 0.6
+    },
+    {
+      "speaker": "CALLER",
+      "start": 18.5,
+      "end": 23.1,
+      "language": "ru",
+      "text": "без подтверждения средств будет арест счетов и повестка в суд.",
+      "confidence": 0.63
+    },
+    {
+      "speaker": "CALLER",
+      "start": 24.1,
+      "end": 29.8,
+      "language": "mixed",
+      "text": "Наличные алып терминал арқылы арнайы шотқа салыңыз реквизиты ээ қазір жіберем",
+      "confidence": 0.67
+    },
+    {
+      "speaker": "CALLER",
+      "start": 31.2,
+      "end": 37.3,
+      "language": "mixed",
+      "text": "Разговор конфиденциальный, никому не сообщайте, иначе будет статья за разглашение.",
+      "confidence": 0.71
+    }
+  ]
+}

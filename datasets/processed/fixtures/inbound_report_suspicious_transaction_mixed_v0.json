@@ -1,0 +1,51 @@
+{
+  "call_id": "inbound_report_suspicious_transaction_mixed_v0",
+  "call_direction": "inbound",
+  "family": "inbound_report_suspicious_transaction",
+  "family_label": "Customer reports a suspicious transaction",
+  "language_mode": "mixed",
+  "asr_noisy": false,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "VICTIM",
+      "start": 1.2,
+      "end": 6.3,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе, картамнан жиырма мың списали, я эту операцию не делал.",
+      "confidence": 0.9
+    },
+    {
+      "speaker": "CALLER",
+      "start": 7.3,
+      "end": 13.8,
+      "language": "ru",
+      "text": "Здравствуйте, зафиксирую обращение. Карту сейчас заблокируем, чтобы остановить списания.",
+      "confidence": 0.88
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 14.4,
+      "end": 17.6,
+      "language": "kk",
+      "text": "Иә, бұғаттаңыз. Бұл қандай да бір алаяқтар.",
+      "confidence": 0.92
+    },
+    {
+      "speaker": "CALLER",
+      "start": 19.2,
+      "end": 24.8,
+      "language": "ru",
+      "text": "Карта заблокирована. Оформим претензию, срок рассмотрения до тридцати дней.",
+      "confidence": 0.91
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 25.6,
+      "end": 28.0,
+      "language": "kk",
+      "text": "Жарайды, рахмет.",
+      "confidence": 0.92
+    }
+  ]
+}

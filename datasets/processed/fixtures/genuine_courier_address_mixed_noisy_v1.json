@@ -1,0 +1,51 @@
+{
+  "call_id": "genuine_courier_address_mixed_noisy_v1",
+  "call_direction": "outbound",
+  "family": "genuine_courier_address",
+  "family_label": "Real courier confirming an address",
+  "language_mode": "mixed",
+  "asr_noisy": true,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 5.6,
+      "language": "mixed",
+      "text": "Сәлеметсіз бе, курьер службы доставки, сізге сәлемдеме бар.",
+      "confidence": 0.66
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 6.6,
+      "end": 9.0,
+      "language": "mixed",
+      "text": "Да я заказывал наушники",
+      "confidence": 0.66
+    },
+    {
+      "speaker": "CALLER",
+      "start": 10.4,
+      "end": 16.5,
+      "language": "mixed",
+      "text": "Кіреберіс екнші ме, домофон жұмыс істейді ме? Жиырма минуттан ке... кейін боламын.",
+      "confidence": 0.47
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 17.8,
+      "end": 20.2,
+      "language": "mixed",
+      "text": "Да, работает, поднимайтесь.",
+      "confidence": 0.45
+    },
+    {
+      "speaker": "CALLER",
+      "start": 22.2,
+      "end": 29.1,
+      "language": "mixed",
+      "text": "Төлем алу кезінде картамен немесе қолма-қол, растау кодын өз қолданбаңыздан өзіңіз көрстесіз.",
+      "confidence": 0.52
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "call_id": "account_compromise_safe_account_ru_noisy_v0",
+  "call_direction": "outbound",
+  "family": "account_compromise_safe_account",
+  "family_label": "Compromised account → transfer to a 'safe account'",
+  "language_mode": "ru",
+  "asr_noisy": true,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 6.9,
+      "language": "ru",
+      "text": "Добрый день, вас беспокоит отдел финансового мониторинга Национального Банка.",
+      "confidence": 0.68
+    },
+    {
+      "speaker": "CALLER",
+      "start": 8.0,
+      "end": 13.8,
+      "language": "ru",
+      "text": "К вашему счёту получили әм доступ третьи лица, зафиксирована попытка списания.",
+      "confidence": 0.46
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 14.3,
+      "end": 16.7,
+      "language": "ru",
+      "text": "Как это возможно",
+      "confidence": 0.5
+    },
+    {
+      "speaker": "CALLER",
+      "start": 17.8,
+      "end": 23.0,
+      "language": "ru",
+      "text": "Ваши деньги в опсности счёт будет ну заблокирован вместе со средствами",
+      "confidence": 0.62
+    },
+    {
+      "speaker": "CALLER",
+      "start": 24.6,
+      "end": 31.4,
+      "language": "ru",
+      "text": "единственный способ сохранить средства — перевести их на ну защищённый резервный счёт банка.",
+      "confidence": 0.69
+    },
+    {
+      "speaker": "CALLER",
+      "start": 32.5,
+      "end": 38.2,
+      "language": "ru",
+      "text": "Подойдите к банкомату и внесите всю сумму по номеру который я продиктую Срчно",
+      "confidence": 0.62
+    },
+    {
+      "speaker": "CALLER",
+      "start": 38.7,
+      "end": 43.8,
+      "language": "mixed",
+      "text": "Сотрудникам отделения не сообщайте цель операции, это тайна проверки.",
+      "confidence": 0.46
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 45.3,
+      "end": 47.7,
+      "language": "ru",
+      "text": "Хорошо, сейчас поеду.",
+      "confidence": 0.63
+    }
+  ]
+}

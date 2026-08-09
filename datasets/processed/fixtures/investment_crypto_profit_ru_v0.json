@@ -1,0 +1,59 @@
+{
+  "call_id": "investment_crypto_profit_ru_v0",
+  "call_direction": "outbound",
+  "family": "investment_crypto_profit",
+  "family_label": "Investment platform → crypto deposit",
+  "language_mode": "ru",
+  "asr_noisy": false,
+  "expected_classification": "SCAM",
+  "segments": [
+    {
+      "speaker": "CALLER",
+      "start": 1.2,
+      "end": 7.1,
+      "language": "ru",
+      "text": "Добрый день, я персональный брокер инвестиционной платформы, меня зовут Алексей.",
+      "confidence": 0.94
+    },
+    {
+      "speaker": "CALLER",
+      "start": 8.6,
+      "end": 14.8,
+      "language": "ru",
+      "text": "Наши клиенты получают гарантированный доход двенадцать процентов в месяц, риска нет.",
+      "confidence": 0.96
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 15.4,
+      "end": 18.5,
+      "language": "ru",
+      "text": "Звучит слишком хорошо. А как это работает?",
+      "confidence": 0.94
+    },
+    {
+      "speaker": "CALLER",
+      "start": 20.0,
+      "end": 26.2,
+      "language": "ru",
+      "text": "Пополните торговый счёт в USDT через обменник, минимальный депозит пятьсот долларов.",
+      "confidence": 0.99
+    },
+    {
+      "speaker": "CALLER",
+      "start": 28.1,
+      "end": 32.6,
+      "language": "ru",
+      "text": "Акция заканчивается сегодня, потом вход только от пяти тысяч.",
+      "confidence": 0.9
+    },
+    {
+      "speaker": "CALLER",
+      "start": 34.6,
+      "end": 39.9,
+      "language": "mixed",
+      "text": "Установите наше приложение по ссылке, я помогу настроить счёт удалённо.",
+      "confidence": 0.89
+    }
+  ]
+}

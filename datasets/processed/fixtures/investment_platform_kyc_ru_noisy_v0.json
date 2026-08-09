@@ -1,0 +1,51 @@
+{
+  "call_id": "investment_platform_kyc_ru_noisy_v0",
+  "call_direction": "inbound",
+  "family": "investment_platform_kyc",
+  "family_label": "Licensed broker completes KYC without asking for a transfer (held out)",
+  "language_mode": "ru",
+  "asr_noisy": true,
+  "expected_classification": "SAFE",
+  "segments": [
+    {
+      "speaker": "VICTIM",
+      "start": 1.2,
+      "end": 5.6,
+      "language": "ru",
+      "text": "Здравствуйте я открывал брокерский счёт хочу уточнить статус",
+      "confidence": 0.48
+    },
+    {
+      "speaker": "CALLER",
+      "start": 7.5,
+      "end": 13.0,
+      "language": "ru",
+      "text": "Здравствуйте счёт открыт осталось пройти верификацию личности в приложении",
+      "confidence": 0.73
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 14.8,
+      "end": 17.2,
+      "language": "mixed",
+      "text": "а деньги куда вносить",
+      "confidence": 0.64
+    },
+    {
+      "speaker": "CALLER",
+      "start": 18.8,
+      "end": 25.1,
+      "language": "ru",
+      "text": "только через ваш личный кабинет реквизиты там же по телефону мы переводы не оформляем",
+      "confidence": 0.43
+    },
+    {
+      "speaker": "VICTIM",
+      "start": 25.7,
+      "end": 28.1,
+      "language": "ru",
+      "text": "Понял, спасибо.",
+      "confidence": 0.52
+    }
+  ]
+}
