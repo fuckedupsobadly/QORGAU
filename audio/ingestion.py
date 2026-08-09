@@ -11,6 +11,7 @@ import json
 import logging
 import shutil
 import subprocess
+import tempfile
 import wave
 from abc import ABC, abstractmethod
 from array import array
@@ -22,6 +23,14 @@ from typing import Any, Iterator, Sequence
 from config.settings import settings
 
 logger = logging.getLogger(__name__)
+
+
+def _brief(exc: Exception) -> str:
+    """A one-line reason, since decoder stderr is often several lines of noise."""
+    if isinstance(exc, subprocess.CalledProcessError):
+        detail = (exc.stderr or b"").decode("utf-8", "replace").strip().splitlines()
+        return detail[-1][:120] if detail else f"exit {exc.returncode}"
+    return f"{type(exc).__name__}: {exc}"[:120]
 
 
 @dataclass
@@ -80,11 +89,17 @@ class FileSource(AudioSource):
         if not self.path.exists():
             raise FileNotFoundError(self.path)
         if self.path.suffix.lower() == ".wav":
-            samples, rate = self._read_wav(self.path)
-            if rate != self.sample_rate:
-                samples = _resample_linear(samples, rate, self.sample_rate)
-            return AudioBuffer(samples, self.sample_rate, source=str(self.path))
-        return AudioBuffer(self._decode_with_ffmpeg(), self.sample_rate, source=str(self.path))
+            try:
+                samples, rate = self._read_wav(self.path)
+            except ValueError as exc:
+                # 24-bit or float WAV — common from call recorders. `wave` cannot
+                # read it, but the external decoders can.
+                logger.info("%s needs decoding: %s", self.path.name, exc)
+            else:
+                if rate != self.sample_rate:
+                    samples = _resample_linear(samples, rate, self.sample_rate)
+                return AudioBuffer(samples, self.sample_rate, source=str(self.path))
+        return AudioBuffer(self._decode(), self.sample_rate, source=str(self.path))
 
     @staticmethod
     def _read_wav(path: Path) -> tuple[list[float], int]:
@@ -105,11 +120,49 @@ class FileSource(AudioSource):
             mono = list(pcm)
         return [value / 32768.0 for value in mono], rate
 
-    def _decode_with_ffmpeg(self) -> list[float]:
-        if shutil.which("ffmpeg") is None:
+    def _decode(self) -> list[float]:
+        """Decode a compressed recording, trying each available decoder in turn.
+
+        Uploads arrive as mp3/m4a/opus far more often than as 16-bit WAV, so this
+        path is the common one, not the exception. A decoder returns None when it
+        is not installed and raises when it cannot handle the file; either way the
+        next decoder gets a turn, because one decoder rejecting a file does not
+        mean the others will (codec support differs). Only when every decoder is
+        exhausted does this fail, and it fails with a single actionable message.
+        """
+        unavailable: list[str] = []
+        failures: list[str] = []
+        for name, decoder in (
+            ("ffmpeg", self._decode_with_ffmpeg),
+            ("afconvert", self._decode_with_afconvert),   # ships with macOS
+            ("soundfile", self._decode_with_soundfile),   # pip, bundles libsndfile
+        ):
+            try:
+                samples = decoder()
+            except Exception as exc:  # noqa: BLE001 — any decoder failure is just "next"
+                failures.append(f"{name} ({_brief(exc)})")
+                logger.info("%s could not decode %s: %s", name, self.path.name, exc)
+                continue
+            if samples is None:
+                unavailable.append(name)
+                continue
+            logger.info("decoded %s with %s (%d samples)", self.path.name, name, len(samples))
+            return samples
+
+        if failures:
             raise RuntimeError(
-                f"{self.path.suffix} needs ffmpeg on PATH (or convert the call to 16-bit WAV first)"
+                f"{self.path.name} could not be decoded — it may be corrupt, empty, or in an "
+                f"unsupported codec. Decoders tried: {', '.join(failures)}."
             )
+        raise RuntimeError(
+            f"cannot decode {self.path.suffix} — no decoder is available (looked for "
+            f"{', '.join(unavailable)}). Install ffmpeg (`brew install ffmpeg`) or run "
+            "`pip install soundfile`, or upload 16-bit PCM WAV instead."
+        )
+
+    def _decode_with_ffmpeg(self) -> list[float] | None:
+        if shutil.which("ffmpeg") is None:
+            return None
         cmd = [
             "ffmpeg", "-nostdin", "-loglevel", "error", "-i", str(self.path),
             "-f", "s16le", "-acodec", "pcm_s16le", "-ac", "1",
@@ -119,6 +172,29 @@ class FileSource(AudioSource):
         pcm = array("h")
         pcm.frombytes(raw[: len(raw) - (len(raw) % 2)])
         return [value / 32768.0 for value in pcm]
+
+    def _decode_with_afconvert(self) -> list[float] | None:
+        """CoreAudio's converter — present on every macOS box, so nothing to install."""
+        if shutil.which("afconvert") is None:
+            return None
+        with tempfile.TemporaryDirectory() as scratch:
+            target = Path(scratch) / "decoded.wav"
+            subprocess.run(
+                ["afconvert", "-f", "WAVE", "-d", f"LEI16@{self.sample_rate}", "-c", "1",
+                 str(self.path), str(target)],
+                capture_output=True, check=True,
+            )
+            samples, rate = self._read_wav(target)
+        return _resample_linear(samples, rate, self.sample_rate) if rate != self.sample_rate else samples
+
+    def _decode_with_soundfile(self) -> list[float] | None:
+        try:
+            import soundfile
+        except ImportError:
+            return None
+        data, rate = soundfile.read(str(self.path), dtype="float32", always_2d=True)
+        mono = [float(sum(frame) / len(frame)) for frame in data]
+        return _resample_linear(mono, rate, self.sample_rate) if rate != self.sample_rate else mono
 
 
 class LiveFrameSource(AudioSource):

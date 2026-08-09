@@ -346,6 +346,12 @@ qorgau/
 | `QORGAU_ASR` | `auto` | `faster_whisper` · `whisper` · `fixture` |
 | `QORGAU_ASR_MODEL` | `small` | any Whisper size — `medium` / `large-v3` are better at Kazakh, and download several GB on first use |
 | `QORGAU_ASR_LANGUAGE` | — | unset = detect per utterance (needed for code-switching); `ru` or `kk` pins a monolingual line |
+
+**Audio formats.** 16-bit PCM WAV is read natively with no dependencies. Anything
+else (mp3, m4a, opus, 24-bit/float WAV) is decoded by the first available of
+ffmpeg, `afconvert` (built into macOS, so nothing to install there), or
+`soundfile`. If none is present the upload is refused with the install command
+rather than failing mid-pipeline.
 | `QORGAU_VAD` | `energy` | `silero` |
 | `QORGAU_DIAR` | `heuristic` | `pyannote` |
 | `QORGAU_ENCRYPTION_KEY` | — | Fernet key for transcripts at rest |

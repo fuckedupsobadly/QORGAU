@@ -1,4 +1,4 @@
-"""QORGAU dashboard (spec section 29).
+"""QRLLM dashboard (spec section 29).
 
 Run from the repository root:
 
@@ -34,7 +34,7 @@ from risk.engine import assess, render_report  # noqa: E402
 from transcription.processor import AudioProcessor, transcript_from_turns  # noqa: E402
 from transcription.schemas import CallAnalysis, Transcript  # noqa: E402
 
-st.set_page_config(page_title="QORGAU — voice scam detection", page_icon="🛡", layout="wide")
+st.set_page_config(page_title="QRLLM — voice scam detection", page_icon="🛡", layout="wide")
 
 SEVERITY_DOT = {"LOW": "🟡", "MEDIUM": "🟠", "HIGH": "🟠", "CRITICAL": "🔴"}
 LEVEL_BADGE = {
@@ -248,7 +248,7 @@ def render_breakdown(risk, analysis) -> None:
 # Sidebar
 # ---------------------------------------------------------------------------
 
-st.sidebar.title("🛡 QORGAU")
+st.sidebar.title("🛡 QRLLM")
 st.sidebar.caption("Kazakh / Russian voice scam detection")
 
 backend_names = available_backends()
@@ -353,8 +353,14 @@ def source_picker(key: str) -> Transcript | None:
                 icon="🚫",
             )
             return None
-        with st.spinner("VAD → diarization → ASR..."):
-            return processor.process(temp, call_direction=direction)
+        with st.spinner("VAD → diarization → ASR (first run downloads the ASR model)..."):
+            try:
+                return processor.process(temp, call_direction=direction)
+            except (RuntimeError, ValueError, OSError) as exc:
+                # An undecodable upload or a missing engine is a normal operator
+                # mistake; it should read as a message, not as a stack trace.
+                st.error(str(exc), icon="🚫")
+                return None
 
     default = (
         "CALLER: Сәлеметсіз бе, это служба безопасности банка Halyk.\n"
@@ -396,13 +402,13 @@ if mode == "Analyse a call":
         cols[0].download_button(
             "⬇ Investigation report (.md)",
             render_report(result),
-            file_name=f"qorgau_{transcript.call_id}.md",
+            file_name=f"qrllm_{transcript.call_id}.md",
             width="stretch",
         )
         cols[1].download_button(
             "⬇ Analysis JSON",
             json.dumps(analysis.public_json(), ensure_ascii=False, indent=2),
-            file_name=f"qorgau_{transcript.call_id}.json",
+            file_name=f"qrllm_{transcript.call_id}.json",
             width="stretch",
         )
         if cols[2].button("💾 Save to case database", width="stretch"):
@@ -492,7 +498,7 @@ elif mode == "Live call (real-time)":
         st.download_button(
             "⬇ Investigation report (.md)",
             render_report(final),
-            file_name=f"qorgau_{final.call_id}.md",
+            file_name=f"qrllm_{final.call_id}.md",
         )
 
 

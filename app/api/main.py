@@ -130,7 +130,11 @@ async def upload_call(
                 "(it is in requirements.txt) or POST /api/calls with a transcript."
             ),
         )
-    transcript = processor.process(target, call_id=call_id, call_direction=call_direction)
+    try:
+        transcript = processor.process(target, call_id=call_id, call_direction=call_direction)
+    except (RuntimeError, ValueError) as exc:
+        # An unsupported or corrupt upload is the client's problem, not a server fault.
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
     TRANSCRIPTS[call_id] = transcript
     return {
         "call_id": call_id,
