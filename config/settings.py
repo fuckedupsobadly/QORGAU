@@ -60,7 +60,10 @@ class AudioConfig:
     vad_backend: str = os.environ.get("QORGAU_VAD", "energy")  # energy | silero
     diarization_backend: str = os.environ.get("QORGAU_DIAR", "heuristic")  # heuristic | pyannote
     asr_backend: str = os.environ.get("QORGAU_ASR", "auto")  # auto | faster_whisper | whisper | fixture
-    asr_model: str = os.environ.get("QORGAU_ASR_MODEL", "large-v3")
+    asr_model: str = os.environ.get("QORGAU_ASR_MODEL", "small")
+    #: Leave unset for per-utterance language detection (needed for code-switching).
+    #: Set to `ru` or `kk` to pin a known-monolingual line.
+    asr_language: str | None = os.environ.get("QORGAU_ASR_LANGUAGE") or None
     #: Segments below this ASR confidence are still analysed, but the risk engine
     #: dampens the score and the UI marks them as low confidence.
     low_confidence_threshold: float = 0.55

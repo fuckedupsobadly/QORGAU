@@ -344,6 +344,8 @@ qorgau/
 | `QORGAU_BASE_MODEL` | `Qwen/Qwen2.5-7B-Instruct` | base model for fine-tuning |
 | `QORGAU_ADAPTER` | `artifacts/adapters/qorgau-lora` | trained adapter path |
 | `QORGAU_ASR` | `auto` | `faster_whisper` · `whisper` · `fixture` |
+| `QORGAU_ASR_MODEL` | `small` | any Whisper size — `medium` / `large-v3` are better at Kazakh, and download several GB on first use |
+| `QORGAU_ASR_LANGUAGE` | — | unset = detect per utterance (needed for code-switching); `ru` or `kk` pins a monolingual line |
 | `QORGAU_VAD` | `energy` | `silero` |
 | `QORGAU_DIAR` | `heuristic` | `pyannote` |
 | `QORGAU_ENCRYPTION_KEY` | — | Fernet key for transcripts at rest |
@@ -360,7 +362,11 @@ Stated plainly, because they determine what this is ready for:
 * **Kazakh ASR is the weakest link end-to-end**, ahead of the analysis layer.
   Whisper's Kazakh is materially worse than its Russian, and it emits one language
   tag per segment — wrong for code-switched speech, so QORGAU re-derives language
-  per utterance itself.
+  per utterance itself. It also mis-detects the language outright on short, noisy
+  clips and transliterates instead of transcribing; QORGAU constrains detection to
+  Kazakh and Russian and re-runs the clip when Whisper strays outside them. The
+  default `small` model keeps the first run fast — raise `QORGAU_ASR_MODEL` to
+  `medium` or `large-v3` for production Kazakh accuracy.
 * **The reference backend is lexicon-bound.** It generalises across inflection,
   agglutination and noise, but a paraphrase built from vocabulary outside
   `lexicon.py` will be missed. That is precisely the gap the fine-tuned model

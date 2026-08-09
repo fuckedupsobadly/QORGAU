@@ -126,8 +126,8 @@ async def upload_call(
         raise HTTPException(
             status_code=503,
             detail=(
-                "No speech-recognition engine installed. Install faster-whisper "
-                "(requirements-ml.txt) or POST /api/calls with a transcript."
+                "No speech-recognition engine installed. Run `pip install faster-whisper` "
+                "(it is in requirements.txt) or POST /api/calls with a transcript."
             ),
         )
     transcript = processor.process(target, call_id=call_id, call_direction=call_direction)
@@ -145,7 +145,7 @@ async def upload_call(
 
 
 @app.post("/api/calls/{call_id}/analyze")
-def analyze_call(call_id: str, request: AnalyzeRequest) -> dict:
+def analyze_call(call_id: str, request: AnalyzeRequest = AnalyzeRequest()) -> dict:
     transcript = TRANSCRIPTS.get(call_id)
     if transcript is None:
         raise HTTPException(status_code=404, detail=f"unknown call {call_id}")

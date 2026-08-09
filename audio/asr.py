@@ -54,38 +54,72 @@ class FasterWhisperASR(SpeechRecognizer):
 
     name = "faster_whisper"
 
+    #: Whisper is multilingual, but this system only claims Kazakh and Russian.
+    #: A short telephone clip is easily mis-detected as a third language, and the
+    #: result is transliterated nonsense rather than a transcript.
+    SUPPORTED_LANGUAGES = ("ru", "kk")
+
     def __init__(
         self,
         model_size: str | None = None,
         device: str = "auto",
         compute_type: str = "int8",
+        language: str | None = None,
     ) -> None:
         self.model_size = model_size or settings.audio.asr_model
         self.device = device
         self.compute_type = compute_type
+        #: Pin a language when the line is known to be monolingual; leaving it
+        #: unset keeps per-utterance detection, which code-switching needs.
+        self.language = language or settings.audio.asr_language
         self._model = None
 
     def _load(self) -> None:
-        if self._model is None:
-            from faster_whisper import WhisperModel
+        if self._model is not None:
+            return
+        from faster_whisper import WhisperModel
 
-            self._model = WhisperModel(
-                self.model_size, device=self.device, compute_type=self.compute_type
-            )
+        device, compute = self.device, self.compute_type
+        if device == "auto":
+            try:
+                import torch
+
+                device = "cuda" if torch.cuda.is_available() else "cpu"
+            except ImportError:
+                device = "cpu"
+        if device == "cpu" and compute in {"float16", "int8_float16"}:
+            compute = "int8"  # float16 is not supported on CPU
+        logger.info("loading faster-whisper %s on %s (%s)", self.model_size, device, compute)
+        self._model = WhisperModel(self.model_size, device=device, compute_type=compute)
 
     def transcribe(self, audio: AudioBuffer, *, start_offset: float = 0.0) -> list[ASRResult]:
         self._load()
         import numpy as np
 
-        segments, _info = self._model.transcribe(
-            np.asarray(list(audio.samples), dtype="float32"),
+        samples = np.asarray(list(audio.samples), dtype="float32")
+        options = dict(
             beam_size=5,
             vad_filter=False,           # QORGAU's own VAD already ran
             word_timestamps=False,
             condition_on_previous_text=True,
-            #: Do not force a language — the caller may switch mid-sentence.
             task="transcribe",
         )
+        #: Do not force a language by default — the caller may switch mid-sentence.
+        segments, info = self._model.transcribe(samples, language=self.language, **options)
+
+        if self.language is None and getattr(info, "language", None) not in self.SUPPORTED_LANGUAGES:
+            # Whisper detected something this system does not support, which on a
+            # short clip means it is about to transliterate rather than transcribe.
+            # Re-run constrained to the likelier of the two languages we serve.
+            # `info` is returned before the generator is consumed, so nothing is
+            # decoded twice here.
+            forced = self._best_supported(info)
+            logger.info(
+                "faster-whisper detected %r; re-transcribing as %r",
+                getattr(info, "language", None), forced,
+            )
+            segments, info = self._model.transcribe(samples, language=forced, **options)
+
         results: list[ASRResult] = []
         for segment in segments:
             text = (segment.text or "").strip()
@@ -103,6 +137,14 @@ class FasterWhisperASR(SpeechRecognizer):
                 )
             )
         return results
+
+    def _best_supported(self, info) -> str:
+        """Pick the most probable of the supported languages from Whisper's own scores."""
+        probs = dict(getattr(info, "all_language_probs", None) or [])
+        ranked = sorted(
+            self.SUPPORTED_LANGUAGES, key=lambda code: probs.get(code, 0.0), reverse=True
+        )
+        return ranked[0]
 
 
 class WhisperASR(SpeechRecognizer):

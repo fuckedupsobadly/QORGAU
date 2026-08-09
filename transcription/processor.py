@@ -87,7 +87,8 @@ class AudioProcessor:
             raise RuntimeError(
                 f"{len(regions)} speech region(s) were detected in {buffer.source!r} but no "
                 "speech-recognition engine is installed, so the call cannot be transcribed. "
-                "Install faster-whisper (see requirements-ml.txt) or set QORGAU_ASR explicitly."
+                "Install it with `pip install faster-whisper` (it is in requirements.txt), "
+                "or set QORGAU_ASR explicitly."
             )
 
         transcript = Transcript(

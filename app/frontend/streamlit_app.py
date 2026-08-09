@@ -348,8 +348,8 @@ def source_picker(key: str) -> Transcript | None:
         if processor.asr.name == "fixture":
             st.error(
                 "No speech-recognition engine is installed, so an audio file cannot be "
-                "transcribed. Install `faster-whisper` (see requirements-ml.txt), or use a "
-                "corpus call / pasted transcript.",
+                "transcribed. Run `pip install faster-whisper` (it is in requirements.txt), "
+                "or use a corpus call / pasted transcript.",
                 icon="🚫",
             )
             return None

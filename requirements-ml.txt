@@ -13,8 +13,7 @@ bitsandbytes>=0.43 ; platform_system == "Linux"
 datasets>=2.19
 sentencepiece>=0.2
 
-# speech
-faster-whisper>=1.0
+# speech — faster-whisper is in requirements.txt (it is core, not an extra)
 # pyannote.audio>=3.1        # optional neural diarization (needs a HF token)
 
 # optional prompt-only API baseline
